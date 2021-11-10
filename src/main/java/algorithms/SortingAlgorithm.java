@@ -1,8 +1,6 @@
 package algorithms;
 
 import org.json.simple.JSONArray;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SortingAlgorithm {
@@ -25,15 +23,15 @@ public class SortingAlgorithm {
 
     public <T extends Comparable<T>> void insertionSort(ArrayList<T> data) {
         int i, x;
-        T key;
-        for (i=1; i<data.size(); i++){
-            key= data.get(i);
+        T currentNumber;
+        for (i = 1; i < data.size(); i++){
+            currentNumber = data.get(i);
             x = i - 1;
-            while (x >= 0 && data.get(x).compareTo(key) > 0){
-                data.set(x+1, data.get(x));
+            while (x >= 0 && data.get(x).compareTo(currentNumber) > 0){
+                data.set(x + 1, data.get(x));
                 x--;
             }
-            data.set(x+1,key);
+            data.set(x + 1, currentNumber);
         }
         for (T datum : data) {
             System.out.println(datum);

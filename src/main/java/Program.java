@@ -10,6 +10,7 @@ import utils.JSONHandler;
 import utils.ResourceReaderStrategy;
 import java.io.*;
 import java.net.URISyntaxException;
+import java.util.Scanner;
 
 
 public class Program {
@@ -17,11 +18,17 @@ public class Program {
     public static void main(String[] args) throws URISyntaxException, IOException, ParseException {
         ResourceReaderStrategy<InputStream> reader = new InputStreamResourceReaderStrategy();
         JSONHandler jsonHandler = new JSONHandler();
-        String fileName = "datasets/sorting.json";
+        System.out.println("Please enter the dataset: ");
+        BufferedReader readFromConsole =
+                new BufferedReader(new InputStreamReader(System.in));
+        String dataset = readFromConsole.readLine();
+        String fileName = String.format("datasets/%s.json", dataset);
         InputStream is = reader.getFileFromResource(fileName);
 
+        System.out.println("Please enter which list needs to be sorted:  ");
+        String jsonList = readFromConsole.readLine();
         JSONObject jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
-        JSONArray currentArray = jsonHandler.getJSONArray(jsonObject, "lijst_aflopend_2");
+        JSONArray currentArray = jsonHandler.getJSONArray(jsonObject, jsonList);
         SortingAlgorithm sortingAlgo = new SortingAlgorithm();
 
         sortingAlgo.sort(currentArray);
