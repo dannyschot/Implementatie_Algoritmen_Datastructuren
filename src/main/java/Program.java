@@ -21,7 +21,7 @@ public class Program {
         InputStream is = reader.getFileFromResource(fileName);
 
         JSONObject jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
-        JSONArray currentArray = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
+        JSONArray currentArray = jsonHandler.getJSONArray(jsonObject, "lijst_aflopend_2");
         SortingAlgorithm sortingAlgo = new SortingAlgorithm();
 
         sortingAlgo.sort(currentArray);

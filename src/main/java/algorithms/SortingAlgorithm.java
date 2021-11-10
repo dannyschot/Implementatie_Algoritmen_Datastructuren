@@ -2,66 +2,43 @@ package algorithms;
 
 import org.json.simple.JSONArray;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SortingAlgorithm {
 
-    public void sort(JSONArray array) {
-        if (array.get(0).getClass().getSimpleName().equals("Long")) {
-            Long[] longArray = convertToLongArray(array);
-            insertionSortWithLong(longArray);
-        } else if (array.get(0).getClass().getSimpleName().equals("Double")) {
-            Double[] doubleArray = convertToDoubleArray(array);
-            insertionSortWithDouble(doubleArray);
-        }
-    }
-    
-    private Long[] convertToLongArray(JSONArray array) {
-        Long[] longArray = new Long[array.size()];
+    public <T extends Comparable<T>> void sort(JSONArray array) {
+        ArrayList<T> list;
+        list = converToArrayList(array);
 
-        for(int i = 0; i < array.size(); i++) {
-            longArray[i] = (Long) array.get(i);
-        }
-        return longArray;
+        insertionSort(list);
     }
 
-    public void insertionSortWithLong(Long[] array) {
-        for (int i = 1; i < array.length; i++) {
-            Long currentNumber = array[i];
-            int j = i - 1;
-            while(j >= 0 && currentNumber < array[j]) {
-                array[j+1] = array[j];
-                j--;
+    public <T> ArrayList<T> converToArrayList(JSONArray array) {
+        ArrayList<T> arrayList = new ArrayList<>();
+
+        for (Object o : array) {
+            arrayList.add((T) o);
+        }
+        return arrayList;
+    }
+
+    public <T extends Comparable<T>> void insertionSort(ArrayList<T> data) {
+        int i, x;
+        T key;
+        for (i=1; i<data.size(); i++){
+            key= data.get(i);
+            x = i - 1;
+            while (x >= 0 && data.get(x).compareTo(key) > 0){
+                data.set(x+1, data.get(x));
+                x--;
             }
-            array[j+1] = currentNumber;
+            data.set(x+1,key);
         }
-        for (Long aLong : array) {
-            System.out.println(aLong);
+        for (T datum : data) {
+            System.out.println(datum);
         }
+
     }
 
-    private Double[] convertToDoubleArray(JSONArray array) {
-        Double[] doubleArray = new Double[array.size()];
-
-        for(int i = 0; i < array.size(); i++) {
-            doubleArray[i] = (Double) array.get(i);
-        }
-        return doubleArray;
-    }
-
-    public void insertionSortWithDouble(Double[] array) {
-        for (int i = 1; i < array.length; i++) {
-            Double currentNumber = array[i];
-            int j = i - 1;
-            while(j >= 0 && currentNumber < array[j]) {
-                array[j+1] = array[j];
-                j--;
-            }
-            array[j+1] = currentNumber;
-        }
-        for (Double aDouble : array) {
-            System.out.println(aDouble);
-        }
-    }
 }
