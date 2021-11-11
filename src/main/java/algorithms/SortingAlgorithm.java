@@ -2,17 +2,18 @@ package algorithms;
 
 import org.json.simple.JSONArray;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class SortingAlgorithm {
 
     public <T extends Comparable<T>> void sort(JSONArray array) {
         ArrayList<T> list;
-        list = converToArrayList(array);
+        list = convertToArrayList(array);
 
         insertionSort(list);
     }
 
-    public <T> ArrayList<T> converToArrayList(JSONArray array) {
+    public <T> ArrayList<T> convertToArrayList(JSONArray array) {
         ArrayList<T> arrayList = new ArrayList<>();
 
         for (Object o : array) {
@@ -21,7 +22,12 @@ public class SortingAlgorithm {
         return arrayList;
     }
 
-    public <T extends Comparable<T>> void insertionSort(ArrayList<T> data) {
+    public <T> ArrayList<T> sortWithSortingLib(ArrayList array) {
+        Collections.sort(array);
+        return array;
+    }
+
+    public <T extends Comparable<T>> ArrayList<T> insertionSort(ArrayList<T> data) {
         int i, x;
         T currentNumber;
         for (i = 1; i < data.size(); i++){
@@ -33,10 +39,7 @@ public class SortingAlgorithm {
             }
             data.set(x + 1, currentNumber);
         }
-        for (T datum : data) {
-            System.out.println(datum);
+        System.out.println(data);
+        return data;
         }
-
-    }
-
 }

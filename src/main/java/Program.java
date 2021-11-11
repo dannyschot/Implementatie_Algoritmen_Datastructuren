@@ -15,20 +15,12 @@ import java.util.Scanner;
 
 public class Program {
 
-    public static void main(String[] args) throws URISyntaxException, IOException, ParseException {
+    public static void main(String[] args) throws IOException, ParseException {
         ResourceReaderStrategy<InputStream> reader = new InputStreamResourceReaderStrategy();
         JSONHandler jsonHandler = new JSONHandler();
-        System.out.println("Please enter the dataset: ");
-        BufferedReader readFromConsole =
-                new BufferedReader(new InputStreamReader(System.in));
-        String dataset = readFromConsole.readLine();
-        String fileName = String.format("datasets/%s.json", dataset);
-        InputStream is = reader.getFileFromResource(fileName);
-
-        System.out.println("Please enter which list needs to be sorted:  ");
-        String jsonList = readFromConsole.readLine();
+        InputStream is = reader.getFileFromResource("datasets/sorting.json");
         JSONObject jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
-        JSONArray currentArray = jsonHandler.getJSONArray(jsonObject, jsonList);
+        JSONArray currentArray = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
         SortingAlgorithm sortingAlgo = new SortingAlgorithm();
 
         sortingAlgo.sort(currentArray);
