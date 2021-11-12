@@ -24,7 +24,6 @@ public class TestInsertionSort {
         jsonHandler = new JSONHandler();
         InputStream is = reader.getFileFromResource("datasets/sorting.json");
         jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
-        JSONArray floatArray = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
         JSONArray aflopendeArray = jsonHandler.getJSONArray(jsonObject, "lijst_aflopend_2");
         JSONArray oplopendeArray = jsonHandler.getJSONArray(jsonObject, "lijst_oplopend_2");
         JSONArray oplopendeArray3 = jsonHandler.getJSONArray(jsonObject, "lijst_willekeurig_3");

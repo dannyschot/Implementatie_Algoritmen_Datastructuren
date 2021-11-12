@@ -39,7 +39,6 @@ public class SortingAlgorithm {
             }
             data.set(x + 1, currentNumber);
         }
-        System.out.println(data);
         return data;
         }
 }
