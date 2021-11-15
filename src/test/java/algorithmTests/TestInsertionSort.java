@@ -1,3 +1,5 @@
+package algorithmTests;
+
 import algorithms.SortingAlgorithm;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -27,23 +29,34 @@ public class TestInsertionSort {
         JSONArray aflopendeArray = jsonHandler.getJSONArray(jsonObject, "lijst_aflopend_2");
         JSONArray oplopendeArray = jsonHandler.getJSONArray(jsonObject, "lijst_oplopend_2");
         JSONArray oplopendeArray3 = jsonHandler.getJSONArray(jsonObject, "lijst_willekeurig_3");
+        JSONArray lijstHerhaald = jsonHandler.getJSONArray(jsonObject, "lijst_herhaald_1000");
+        JSONArray legeLijst = jsonHandler.getJSONArray(jsonObject, "lijst_leeg_0");
+        JSONArray lijstNull1 = jsonHandler.getJSONArray(jsonObject, "lijst_null_1");
+        JSONArray lijstOplopend = jsonHandler.getJSONArray(jsonObject, "lijst_oplopend_10000");
+        JSONArray lijstWillekeurig10000 = jsonHandler.getJSONArray(jsonObject, "ijst_willekeurig_10000");
+
         sortingAlgo = new SortingAlgorithm();
     }
 
     @Test
-    public <T> void testSpeedOfInsertionSortFloat8001() {
+    public <T> void insertionSortShouldSortList() {
         //Arrange
         JSONArray floatArray = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
-        ArrayList<Float> list;
-        list = sortingAlgo.convertToArrayList(floatArray);
         ArrayList<Float> sortedWithLib;
         ArrayList<Float> sortedWithAlgo;
 
         //Act
-        sortedWithLib = sortingAlgo.sortWithSortingLib(list);
-        sortedWithAlgo = sortingAlgo.insertionSort(list);
+        sortedWithLib = sortingAlgo.sortWithSortingLib(floatArray);
+        sortedWithAlgo = sortingAlgo.insertionSort(floatArray);
 
         //Assert
         Assert.assertArrayEquals(sortedWithLib.toArray(), sortedWithAlgo.toArray());
+    }
+
+    @Test
+    public void insertionSortshouldNotSortStringList() {
+        //Arrange
+        JSONArray lijstOnsorteerbaar = jsonHandler.getJSONArray(jsonObject, "lijst_onsorteerbaar_3");
+
     }
 }
