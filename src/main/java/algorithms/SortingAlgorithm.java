@@ -4,6 +4,7 @@ import org.json.simple.JSONArray;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class SortingAlgorithm {
     public <T> ArrayList sortWithSortingLib(ArrayList array) {
@@ -11,11 +12,10 @@ public class SortingAlgorithm {
         return array;
     }
 
-    public <T extends Comparable<T>> ArrayList<T> insertionSort(ArrayList<T> data) {
+    public <T extends Comparable<T>> List<T> insertionSort(List<T> data) {
         int i, x;
         T currentNumber;
         try {
-
             for (i = 1; i < data.size(); i++){
                 currentNumber = data.get(i);
                 x = i - 1;

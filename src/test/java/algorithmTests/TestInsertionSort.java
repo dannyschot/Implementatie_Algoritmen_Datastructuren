@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
 public class TestInsertionSort {
     SortingAlgorithm sortingAlgo;
@@ -26,15 +27,6 @@ public class TestInsertionSort {
         jsonHandler = new JSONHandler();
         InputStream is = reader.getFileFromResource("datasets/sorting.json");
         jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
-        JSONArray aflopendeArray = jsonHandler.getJSONArray(jsonObject, "lijst_aflopend_2");
-        JSONArray oplopendeArray = jsonHandler.getJSONArray(jsonObject, "lijst_oplopend_2");
-        JSONArray oplopendeArray3 = jsonHandler.getJSONArray(jsonObject, "lijst_willekeurig_3");
-        JSONArray lijstHerhaald = jsonHandler.getJSONArray(jsonObject, "lijst_herhaald_1000");
-        JSONArray legeLijst = jsonHandler.getJSONArray(jsonObject, "lijst_leeg_0");
-        JSONArray lijstNull1 = jsonHandler.getJSONArray(jsonObject, "lijst_null_1");
-        JSONArray lijstOplopend = jsonHandler.getJSONArray(jsonObject, "lijst_oplopend_10000");
-        JSONArray lijstWillekeurig10000 = jsonHandler.getJSONArray(jsonObject, "ijst_willekeurig_10000");
-
         sortingAlgo = new SortingAlgorithm();
     }
 
@@ -42,8 +34,8 @@ public class TestInsertionSort {
     public <T> void insertionSortShouldSortList() {
         //Arrange
         JSONArray floatArray = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
-        ArrayList<Float> sortedWithLib;
-        ArrayList<Float> sortedWithAlgo;
+        List<Float> sortedWithLib;
+        List<Float> sortedWithAlgo;
 
         //Act
         sortedWithLib = sortingAlgo.sortWithSortingLib(floatArray);
