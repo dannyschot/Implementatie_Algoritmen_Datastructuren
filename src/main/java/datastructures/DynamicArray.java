@@ -2,20 +2,29 @@ package datastructures;
 
 import exceptions.DynamicArrayException;
 
-public class DynamicArray<E> {
-    private int[] array;
+import java.util.AbstractList;
+
+public class DynamicArray<E> extends AbstractList<E> { // TODO:: In alle classes magic numbers weghalen
+    private E[] array;
     private int capacity;
     private int current;
 
+    @SuppressWarnings("unchecked")
     public DynamicArray() {
-        array = new int[1];
+        array = (E[]) new Object[10];
         capacity = 1;
         current = 0;
     }
 
-    public void add(int data) {
+    @Override
+    public int size() {
+        return current;
+    }
+
+    @SuppressWarnings("unchecked")
+    public boolean add(E data) {
         if (current == capacity) {
-            int[] temp = new int[2 * capacity];
+            E[] temp = (E[]) new Object[2 * capacity];
 
             if (capacity >= 0) {
                 System.arraycopy(array, 0, temp, 0, capacity);
@@ -25,19 +34,27 @@ public class DynamicArray<E> {
         }
         array[current] = data;
         current++;
+        return false;
     }
 
-    public void add(int data, int index) throws DynamicArrayException {
-        if (indexOutOfRange(index)) {
-            throw new DynamicArrayException();
-        } else if (index == capacity) {
-            add(data);
+    @SuppressWarnings("unchecked")
+    @Override
+    public void add(int index, E element) {
+        if (current == capacity) {
+            E[] temp = (E[]) new Object[2 * capacity]; // TODO:: Methode van maken
         }
-        array[index] = data;
+
+        if (current - index >= 0) {
+            System.arraycopy(array, index, array, index + 1, current - index);
+        }
+
+        array[index] = element;
+        current++;
     }
 
-    public int retreive(int index) {
-        int element = 0;
+    @Override
+    public E get(int index) {
+        E element = null;
         if (indexOutOfRange(index)) {
             throw new ArrayIndexOutOfBoundsException();
         }
@@ -48,32 +65,34 @@ public class DynamicArray<E> {
     }
 
     public void delete() {
-        array[current - 1] = 0;
+        array[current - 1] = null;
         current--;
-        checkIfArrayNeedsToBeShrunken();
+        if(needsToBeShrunken()) shrink();
     }
 
-    private void checkIfArrayNeedsToBeShrunken() {
-        if (current <= capacity * 0.25) {
-            int[] temp = new int[capacity / 2];
+    private boolean needsToBeShrunken() {
+        return current <= capacity * 0.25;
 
-            if (capacity / 2 >= 0) {
-                System.arraycopy(array, 0, temp, 0, capacity / 2);
-            }
-            array = temp;
-            capacity = capacity / 2;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void shrink() {
+        E[] temp = (E[]) new Object[capacity / 2];
+
+        if (capacity / 2 >= 0) {
+            System.arraycopy(array, 0, temp, 0, capacity / 2);
         }
+        array = temp;
+        capacity = capacity / 2;
     }
 
-    public boolean indexOutOfRange(int index) {
+    private boolean indexOutOfRange(int index) {
         return index > capacity;
     }
 
-    public int getSize() {
-        return current;
-    }
-
     public void showElements() {
-        // print enkel de elementen die erin zitten
+        for (E e : array) {
+            System.out.println(e);
+        }
     }
 }

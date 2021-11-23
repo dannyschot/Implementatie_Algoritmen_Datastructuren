@@ -4,17 +4,10 @@ import algorithms.SortingAlgorithm;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import utils.JSONHandler;
-
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class SortingTestingStrategy implements TestingStrategy{
     Instant startTime;
@@ -32,14 +25,14 @@ public class SortingTestingStrategy implements TestingStrategy{
         jsonHandler = new JSONHandler();
     }
 
-
+    @SuppressWarnings("unchecked")
     @Override
-    public <T> void runTests(JSONObject dataset) throws IOException {
+    public void runTests(JSONObject dataset) throws IOException {
         clearResultsFile();
         for (Object o : dataset.keySet()) {
             String key = (String) o;
             JSONArray jsonArray = jsonHandler.getJSONArray(dataset, key);
-            if (jsonArray.contains("string")) {
+            if (jsonArray.contains("string")) { //TODO:: Flexibiliteit toevoegen
                 continue;
             }
             startTime = Instant.now();

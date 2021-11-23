@@ -1,2 +1,15 @@
 
-For dataset: key: The running time for the sorting algorithm is: 394ms
+For dataset: lijst_oplopend_2: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_herhaald_1000: The running time for the sorting algorithm is: 7ms
+For dataset: lijst_oplopend_10000: The running time for the sorting algorithm is: 2ms
+For dataset: lijst_willekeurig_10000: The running time for the sorting algorithm is: 482ms
+For dataset: lijst_met_strings: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_gesorteerd_aflopend_3: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_willekeurig_3: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_float_8001: The running time for the sorting algorithm is: 334ms
+For dataset: lijst_aflopend_2: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_leeg_0: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_gesorteerd_oplopend_3: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_null_3: The running time for the sorting algorithm is: 0ms
+For dataset: lijst_null_1: The running time for the sorting algorithm is: 0ms
+For dataset: eigen_lijst: The running time for the sorting algorithm is: 0ms

@@ -1,18 +1,15 @@
 package algorithms;
 
-import org.json.simple.JSONArray;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-public class SortingAlgorithm {
-    public <T> ArrayList sortWithSortingLib(ArrayList array) {
+public class SortingAlgorithm<T extends Comparable<T>> {
+    public <T> void sortWithSortingLib(ArrayList array) {
         Collections.sort(array);
-        return array;
     }
 
-    public <T extends Comparable<T>> List<T> insertionSort(List<T> data) {
+    public void insertionSort(List<T> data) {
         int i, x;
         T currentNumber;
         try {
@@ -28,6 +25,5 @@ public class SortingAlgorithm {
         } catch (NullPointerException e) {
             System.out.println(e);
         }
-        return data;
     }
 }

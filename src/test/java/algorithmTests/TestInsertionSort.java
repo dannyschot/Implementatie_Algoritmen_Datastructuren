@@ -10,12 +10,9 @@ import org.junit.Test;
 import utils.InputStreamResourceReaderStrategy;
 import utils.JSONHandler;
 import utils.ResourceReaderStrategy;
-
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+
 
 public class TestInsertionSort {
     SortingAlgorithm sortingAlgo;
@@ -31,24 +28,23 @@ public class TestInsertionSort {
     }
 
     @Test
-    public <T> void insertionSortShouldSortList() {
+    public void insertionSortShouldSortList() {
         //Arrange
-        JSONArray floatArray = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
-        List<Float> sortedWithLib;
-        List<Float> sortedWithAlgo;
+        JSONArray unsorted1 = jsonHandler.getJSONArray(jsonObject, "lijst_float_8001");
+        JSONArray unsorted2 = (JSONArray) unsorted1.clone();
 
         //Act
-        sortedWithLib = sortingAlgo.sortWithSortingLib(floatArray);
-        sortedWithAlgo = sortingAlgo.insertionSort(floatArray);
+        sortingAlgo.sortWithSortingLib(unsorted1);
+        sortingAlgo.insertionSort(unsorted2);
+
 
         //Assert
-        Assert.assertArrayEquals(sortedWithLib.toArray(), sortedWithAlgo.toArray());
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
     @Test
     public void insertionSortshouldNotSortStringList() {
         //Arrange
         JSONArray lijstOnsorteerbaar = jsonHandler.getJSONArray(jsonObject, "lijst_onsorteerbaar_3");
-
     }
 }
