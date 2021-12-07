@@ -1,7 +1,5 @@
 package datastructures;
 
-import exceptions.DynamicArrayException;
-
 import java.util.AbstractList;
 
 public class DynamicArray<E> extends AbstractList<E> { // TODO:: In alle classes magic numbers weghalen
