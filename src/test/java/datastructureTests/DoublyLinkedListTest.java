@@ -1,6 +1,7 @@
 package datastructureTests;
 
 import datastructures.DoublyLinkedList;
+import datastructures.ListIterator;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;

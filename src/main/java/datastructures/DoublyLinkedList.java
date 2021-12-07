@@ -1,7 +1,5 @@
 package datastructures;
 
-import utils.ListIterator;
-
 public class DoublyLinkedList<E>  {
     private Link<E> first;
     private Link<E> last;
