@@ -5,9 +5,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.util.ArrayList;
 
-public class SortingTestResultStrategy implements TestResultStrategy{
+public class SortingTestResultStrategy implements TestResultStrategy { // TODO:: Ervoor zorgen dat er per algoritme een test bestandje wordt gemaakt
 
     public SortingTestResultStrategy(){
         createNewFile();

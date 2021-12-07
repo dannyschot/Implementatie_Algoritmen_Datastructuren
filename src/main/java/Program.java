@@ -1,6 +1,3 @@
-import datastructures.Deque;
-import datastructures.DynamicArray;
-import datastructures.PriorityQueueCris;
 import managers.PerformanceTester;
 import managers.SortingTestingStrategy;
 import managers.TestingStrategy;
@@ -10,10 +7,10 @@ import utils.InputStreamResourceReaderStrategy;
 import utils.JSONHandler;
 import utils.ResourceReaderStrategy;
 import java.io.*;
-import java.util.ArrayList;
 
 public class Program {
 
+    @SuppressWarnings("unchecked")
     public static void main(String[] args) throws IOException, ParseException {
         ResourceReaderStrategy<InputStream> reader = new InputStreamResourceReaderStrategy();
         JSONHandler jsonHandler = new JSONHandler();
@@ -22,7 +19,6 @@ public class Program {
         TestingStrategy sortingTestStrategy = new SortingTestingStrategy();
         PerformanceTester sortingTester = new PerformanceTester(sortingTestStrategy);
 
-//        sortingTester.startTest(jsonObject);
-
+        sortingTester.startTest(jsonObject);
     }
 }

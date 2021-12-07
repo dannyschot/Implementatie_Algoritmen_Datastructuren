@@ -1,6 +1,9 @@
 package managers;
 
-import algorithms.SortingAlgorithm;
+import algorithms.InsertionSort;
+import algorithms.ParallelMergeSort;
+import algorithms.QuickSort;
+import algorithms.SelectionSort;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import utils.JSONHandler;
@@ -9,20 +12,20 @@ import java.io.IOException;
 import java.time.Duration;
 import java.time.Instant;
 
-public class SortingTestingStrategy implements TestingStrategy{
+public class SortingTestingStrategy implements TestingStrategy { // TODO:: Cleanup en zorgen dat alle sorteringsalgoritmes door de test gaan
     Instant startTime;
     Instant endTime;
     Long delta;
     TestResultStrategy testResultStrategy;
     TestResultManager resultManager;
-    SortingAlgorithm sortingAlgorithm;
+    ParallelMergeSort parallelMergeSort;
     JSONHandler jsonHandler;
 
     public SortingTestingStrategy() {
         testResultStrategy  = new SortingTestResultStrategy();
         resultManager = new TestResultManager(testResultStrategy);
-        sortingAlgorithm = new SortingAlgorithm();
         jsonHandler = new JSONHandler();
+        parallelMergeSort = new ParallelMergeSort<>();
     }
 
     @SuppressWarnings("unchecked")
@@ -36,7 +39,7 @@ public class SortingTestingStrategy implements TestingStrategy{
                 continue;
             }
             startTime = Instant.now();
-            sortingAlgorithm.insertionSort(jsonArray);
+            parallelMergeSort.sort(jsonArray);
             endTime = Instant.now();
             delta = Duration.between(startTime, endTime).toMillis();
             resultManager.handleTestResults(key, delta);

@@ -1,7 +1,7 @@
 package algorithmTests;
 
-import algorithms.InsertionSort;
-import org.json.simple.JSONArray;
+import algorithms.QuickSort;
+import algorithms.RadixSort;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
@@ -11,13 +11,13 @@ import utils.Dataset;
 import utils.InputStreamResourceReaderStrategy;
 import utils.JSONHandler;
 import utils.ResourceReaderStrategy;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-
-public class TestInsertionSort {
-    InsertionSort sortingAlgo;
+public class TestRadixSort {
+    RadixSort radixSort;
     JSONHandler jsonHandler;
     JSONObject jsonObject;
     Dataset dataset;
@@ -29,20 +29,26 @@ public class TestInsertionSort {
         InputStream is = reader.getFileFromResource("datasets/sorting.json");
         jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
         dataset = new Dataset();
-        sortingAlgo = new InsertionSort();
+        radixSort = new RadixSort();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void insertionSortShouldSortList() { // TODO:: Cast verwijderen
         //Arrange
-        ArrayList<Double> unsorted1 = dataset.getFloat8001();
-        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
+        ArrayList<Long> unsorted1 = dataset.getLijstWillekeurig10000();
+        Long[] unsorted2 = new Long[unsorted1.size()];
+
+        for (int i = 0; i < unsorted1.size(); i++) {
+            unsorted2[i] = unsorted1.get(i);
+        }
+
 
         //Act
-        sortingAlgo.sortWithSortingLib(unsorted1);
-        sortingAlgo.sort(unsorted2);
+        radixSort.sortWithSortingLib(unsorted1);
+        radixSort.sort(unsorted2);
 
         //Assert
-        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
     }
 }

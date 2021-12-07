@@ -118,6 +118,24 @@ public class DoublyLinkedListTest<T> {
     }
 
     @Test
+    public void shouldInsertAfter() {
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
+        doublyLinkedList.insertFirst(10);
+        doublyLinkedList.insertFirst(20);
+        doublyLinkedList.insertFirst(50);
+
+
+        boolean expected = true;
+        boolean actual = doublyLinkedList.insertAfter(20, 30);
+
+        int expectedValue = 10;
+        int actualValue = doublyLinkedList.getLast();
+
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expectedValue, actualValue);
+    }
+
+    @Test
     public void shouldDeleteFirst() {
         DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
         doublyLinkedList.insertFirst(10);

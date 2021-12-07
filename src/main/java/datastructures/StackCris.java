@@ -5,7 +5,6 @@ public class StackCris<E> implements IStack<E>{
     private E[] stackArray;
     private int top;
 
-    @SuppressWarnings("unchecked")
     public StackCris(int size) {
         maxSize = size;
         stackArray = (E[]) new Object[size];

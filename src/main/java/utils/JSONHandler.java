@@ -56,6 +56,7 @@ public class JSONHandler {
         return listWithStrings;
     }
 
+
     public ArrayList<Integer> convertToIntegerArray(JSONArray jsonArray) {
         ArrayList<Integer> listWithIntegers = new ArrayList<>();
 

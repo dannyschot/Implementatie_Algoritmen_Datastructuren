@@ -1,0 +1,20 @@
+Dinsdag:
+	ochtend:	theorie
+	middag:		bp impl
+
+Woensdag:
+	ochtend:	op
+	middag:		op
+
+Donderdag:
+	ochtend:	bp impl
+	middag:		bp impl
+
+Vrijdag:
+	ochtend:	theorie
+	middag:		theorie
+
+Zaterdag:
+	ochtend:	op
+	middag:		op				
+		

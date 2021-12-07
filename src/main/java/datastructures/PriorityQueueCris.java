@@ -1,8 +1,6 @@
 package datastructures;
 
-import java.util.ArrayList;
-
-public class PriorityQueueCris<E extends Comparable<? super E>> {
+public class PriorityQueueCris<E extends Comparable<? super E>> implements IPriorityQueue<E> {
     private int maxSize;
     private E[] queueArray;
     private int nItems;
@@ -14,7 +12,8 @@ public class PriorityQueueCris<E extends Comparable<? super E>> {
         nItems = 0;
     }
 
-    public <T extends Comparable<T>> void enqueue(E data) {
+    @Override
+    public void enqueue(E data) {
         int j;
 
         if (nItems == 0) {
@@ -32,18 +31,22 @@ public class PriorityQueueCris<E extends Comparable<? super E>> {
         }
     }
 
+    @Override
     public E dequeue() {
         return queueArray[--nItems];
     }
 
+    @Override
     public E peekMin() {
         return queueArray[nItems - 1];
     }
 
+    @Override
     public boolean isEmpty() {
         return nItems == 0;
     }
 
+    @Override
     public boolean isFull() {
         return nItems == maxSize;
     }

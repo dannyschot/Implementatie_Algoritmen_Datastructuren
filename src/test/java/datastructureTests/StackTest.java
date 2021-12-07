@@ -98,6 +98,28 @@ public class StackTest {
     }
 
     @Test
+    public void insertionShouldTakeConstantTime() {
+        ArrayList<Long> listWithLong = dataset.getLijstHerhaald1000();
+        IStack<Long> longStack = new StackCris<>(listWithLong.size() * 2);
+        Instant startTime;
+        long delta;
+
+        for (Long element : listWithLong) {
+            longStack.push(element);
+        }
+
+        startTime = Instant.now();
+        longStack.push(10L);
+        delta = Duration.between(startTime, Instant.now()).toNanos();
+
+        IStack<Long> longStackEmpty = new StackCris<>(listWithLong.size());
+
+        startTime = Instant.now();
+        longStackEmpty.push(10L);
+        delta = Duration.between(startTime, Instant.now()).toNanos();
+    }
+
+    @Test
     public void shouldAddElementOnTopOfStack() {
         testStack.push(10);
         testStack.push(5);

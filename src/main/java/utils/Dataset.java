@@ -48,10 +48,10 @@ public class Dataset {
         return jsonHandler.convertToIntegerArray(jsonArray);
     }
 
-    public ArrayList<Integer> getLijstGesorteerdOplopend3() {
+    public ArrayList<Long> getLijstGesorteerdOplopend3() {
         JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, "lijst_gesorteerd_oplopend_3");
 
-        return jsonHandler.convertToIntegerArray(jsonArray);
+        return jsonHandler.convertToLongArray(jsonArray);
     }
 
     public ArrayList<Long> getLijstHerhaald1000() {
@@ -79,26 +79,33 @@ public class Dataset {
         return jsonHandler.convertToIntegerArray(jsonArray);
     }
 
-    public ArrayList<Integer> getLijstOplopend1000() {
+    public ArrayList<Long> getLijstOplopend1000() {
         JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, "lijst_oplopend_10000");
 
-        return jsonHandler.convertToIntegerArray(jsonArray);
+
+        return jsonHandler.convertToLongArray(jsonArray);
     }
 
-    public ArrayList<Integer> getLijstWillekeurig10000() {
+    public ArrayList<Long> getLijstWillekeurig10000() {
         JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, "lijst_willekeurig_10000");
 
-        return jsonHandler.convertToIntegerArray(jsonArray);
+        return jsonHandler.convertToLongArray(jsonArray);
     }
 
-    public ArrayList<Integer> getLijstWillekeurig3() {
+    public ArrayList<Long> getLijstWillekeurig3() {
         JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, "lijst_willekeurig_3");
-
-        return jsonHandler.convertToIntegerArray(jsonArray);
+        System.out.println(jsonArray.get(0).getClass().getSimpleName());
+        return jsonHandler.convertToLongArray(jsonArray);
     }
 
     public ArrayList<String> getLijstMetStrings() {
         JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, "lijst_met_strings");
+
+        return jsonHandler.convertToStringArray(jsonArray);
+    }
+
+    public ArrayList<String> getLijstGesorteerdeStrings() {
+        JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, "lijst_gesorteerde_strings");
 
         return jsonHandler.convertToStringArray(jsonArray);
     }

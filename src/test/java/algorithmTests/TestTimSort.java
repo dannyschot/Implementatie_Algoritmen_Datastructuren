@@ -1,7 +1,7 @@
 package algorithmTests;
 
-import algorithms.InsertionSort;
-import org.json.simple.JSONArray;
+import algorithms.SelectionSort;
+import algorithms.TimSort;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
@@ -15,13 +15,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-
-public class TestInsertionSort {
-    InsertionSort sortingAlgo;
+public class TestTimSort {
+    TimSort timSort;
     JSONHandler jsonHandler;
     JSONObject jsonObject;
     Dataset dataset;
 
+    @SuppressWarnings("unchecked")
     @Before
     public void setup() throws IOException, ParseException, InterruptedException {
         ResourceReaderStrategy<InputStream> reader = new InputStreamResourceReaderStrategy();
@@ -29,20 +29,25 @@ public class TestInsertionSort {
         InputStream is = reader.getFileFromResource("datasets/sorting.json");
         jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
         dataset = new Dataset();
-        sortingAlgo = new InsertionSort();
+        timSort = new TimSort<>();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
-    public void insertionSortShouldSortList() { // TODO:: Cast verwijderen
+    public void timSortShouldSortList() { // TODO:: Cast verwijderen
         //Arrange
         ArrayList<Double> unsorted1 = dataset.getFloat8001();
-        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
+        Double[] unsorted2 = new Double[unsorted1.size()];
+
+        for (int i = 0; i < unsorted1.size(); i++) {
+            unsorted2[i] = unsorted1.get(i);
+        }
 
         //Act
-        sortingAlgo.sortWithSortingLib(unsorted1);
-        sortingAlgo.sort(unsorted2);
+        timSort.sortWithSortingLib(unsorted1);
+        timSort.timSort(unsorted2, unsorted2.length);
 
         //Assert
-        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
     }
 }

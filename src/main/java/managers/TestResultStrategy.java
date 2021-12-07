@@ -1,6 +1,5 @@
 package managers;
 
-import java.util.ArrayList;
 
 public interface TestResultStrategy {
 
