@@ -22,6 +22,7 @@ public class JSONHandler {
         return (JSONObject) parser.parse(new InputStreamReader(is, StandardCharsets.UTF_8));
     }
 
+
     public JSONArray getJSONArray(JSONObject object, String value) {
         return (JSONArray) object.get(value);
     }

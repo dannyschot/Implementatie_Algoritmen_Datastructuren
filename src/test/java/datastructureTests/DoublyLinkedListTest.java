@@ -1,16 +1,12 @@
 package datastructureTests;
 
 import datastructures.DoublyLinkedList;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import utils.Dataset;
-import utils.InputStreamResourceReaderStrategy;
-import utils.JSONHandler;
-import utils.ResourceReaderStrategy;
+import utils.*;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.Duration;
@@ -35,13 +31,14 @@ public class DoublyLinkedListTest<T> {
     public void shouldInsertDataSetDoubleIntoDoublyLinkedList() {
         DoublyLinkedList<Double> doublyLinkedListDouble = new DoublyLinkedList<>();
         ArrayList<Double> listWithFloat = dataset.getFloat8001();
+        ListIterator<Double> iter = doublyLinkedListDouble.getIterator();
         int sizeOfJsonArray = listWithFloat.size();
         Instant startTime;
         long delta;
 
         startTime = Instant.now();
         for (Double element : listWithFloat) {
-            doublyLinkedListDouble.insertFirst(element);
+            iter.insertBefore(element);
         }
         delta = Duration.between(startTime, Instant.now()).toMillis();
 
@@ -53,8 +50,9 @@ public class DoublyLinkedListTest<T> {
 
     @Test
     public void shouldInsertDataSetLongIntoDoublyLinkedList() {
-        DoublyLinkedList<Long> doublyLinkedListInteger = new DoublyLinkedList<>();
+        DoublyLinkedList<Long> doublyLinkedListLong = new DoublyLinkedList<>();
         ArrayList<Long> listWithLong = dataset.getLijstHerhaald1000();
+        ListIterator<Long> iter = doublyLinkedListLong.getIterator();
         Instant startTime;
         long delta;
 
@@ -62,20 +60,21 @@ public class DoublyLinkedListTest<T> {
 
         startTime = Instant.now();
         for (Long element : listWithLong) {
-            doublyLinkedListInteger.insertFirst(element);
+            iter.insertBefore(element);
         }
         delta = Duration.between(startTime, Instant.now()).toMillis();
         System.out.println("Duration for inserting Long into Doubly Linked List: " + delta + "ms");
 
-        int actual = doublyLinkedListInteger.getSize();
+        int actual = doublyLinkedListLong.getSize();
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldInsertDataSetStringIntoDoublyLinkedList() {
-        DoublyLinkedList<String> doublyLinkedListInteger = new DoublyLinkedList<>();
+        DoublyLinkedList<String> doublyLinkedListString = new DoublyLinkedList<>();
         ArrayList<String> listWithStrings = dataset.getLijstMetStrings();
+        ListIterator<String> iter = doublyLinkedListString.getIterator();
         Instant startTime;
         long delta;
 
@@ -83,12 +82,12 @@ public class DoublyLinkedListTest<T> {
 
         startTime = Instant.now();
         for (String element : listWithStrings) {
-            doublyLinkedListInteger.insertFirst(element);
+            iter.insertBefore(element);
         }
         delta = Duration.between(startTime, Instant.now()).toMillis();
         System.out.println("Duration for inserting String into Doubly Linked List: " + delta + "ms");
 
-        int actual = doublyLinkedListInteger.getSize();
+        int actual = doublyLinkedListString.getSize();
 
         Assert.assertEquals(expected, actual);
     }
@@ -96,74 +95,76 @@ public class DoublyLinkedListTest<T> {
     @Test
     public void shouldInsertAtStart() {
         DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
-        doublyLinkedList.insertFirst(10);
-        doublyLinkedList.insertFirst(20);
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
 
         Integer expected = 20;
-        Integer actual = doublyLinkedList.getFirst();
+        Integer actual = doublyLinkedList.getFirstElement();
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldInsertAtEnd() {
+    public void shouldDeleteFirst() {
         DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
-        doublyLinkedList.insertFirst(10);
-        doublyLinkedList.insertFirst(20);
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
+        iter.insertBefore(50);
 
-        Integer expected = 10;
-        Integer actual = doublyLinkedList.getLast();
+        doublyLinkedList.deleteFirst();
 
+        Integer expected = 20;
+        Integer actual = doublyLinkedList.getFirstElement();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldGetCorrectCurrent() {
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
+        iter.insertBefore(50);
+
+        int expected = 50;
+        int actual = iter.getCurrent().getData();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldDeleteCorrectCurrentAndSetNewCorrectCurrent() {
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
+        iter.insertBefore(50);
+
+        int expectedDeletedCurrent = 50;
+        int actualDeletedCurrent = iter.deleteCurrent();
+
+        int expected = 20;
+        int actual = iter.getCurrent().getData();
+
+        Assert.assertEquals(expectedDeletedCurrent, actualDeletedCurrent);
         Assert.assertEquals(expected, actual);
     }
 
     @Test
     public void shouldInsertAfter() {
         DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
-        doublyLinkedList.insertFirst(10);
-        doublyLinkedList.insertFirst(20);
-        doublyLinkedList.insertFirst(50);
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
+        iter.insertAfter(50);
 
-
-        boolean expected = true;
-        boolean actual = doublyLinkedList.insertAfter(20, 30);
-
-        int expectedValue = 10;
-        int actualValue = doublyLinkedList.getLast();
-
-        Assert.assertEquals(expected, actual);
-        Assert.assertEquals(expectedValue, actualValue);
-    }
-
-    @Test
-    public void shouldDeleteFirst() {
-        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
-        doublyLinkedList.insertFirst(10);
-        doublyLinkedList.insertFirst(20);
-        doublyLinkedList.insertFirst(50);
-
-        doublyLinkedList.deleteFirst();
-
-        Integer expected = 20;
-        Integer actual = doublyLinkedList.getFirst();
+        int expected = 20;
+        int actual = doublyLinkedList.getFirstElement();
 
         Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void shouldDeleteLast() {
-        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
-        doublyLinkedList.insertFirst(10);
-        doublyLinkedList.insertFirst(20);
-        doublyLinkedList.insertFirst(50);
-        doublyLinkedList.insertFirst(100);
-
-        doublyLinkedList.deleteLast();
-
-        Integer expected = 20;
-        Integer actual = doublyLinkedList.getLast();
-
-        Assert.assertEquals(expected, actual);
-
-    }
 }

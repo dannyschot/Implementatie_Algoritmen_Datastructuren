@@ -78,22 +78,21 @@ public class TimSort<T extends Comparable<T>> {
     }
 
     public void timSort(T[] arr, int n) {
-        int minRun = minRunLength(MIN_MERGE);
-
-        for (int i = 0; i < n; i += minRun) {
-            insertionSort(arr, i, Math.min((i + MIN_MERGE - 1), (n - 1)));
-        }
-
-        for (int size = minRun; size < n; size = 2 * size) {
-
-            for (int left = 0; left < n; left += 2 * size) {
-                int mid = left + size - 1;
-                int right = Math.min((left + 2 * size - 1),
-                        (n - 1));
-
-                if (mid < right)
-                    merge(arr, left, mid, right);
+        try {
+            int minRun = minRunLength(MIN_MERGE);
+            for (int i = 0; i < n; i += minRun) {
+                insertionSort(arr, i, Math.min((i + MIN_MERGE - 1), (n - 1)));
             }
+            for (int size = minRun; size < n; size = 2 * size) {
+                for (int left = 0; left < n; left += 2 * size) {
+                    int mid = left + size - 1;
+                    int right = Math.min((left + 2 * size - 1), (n - 1));
+                    if (mid < right)
+                        merge(arr, left, mid, right);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 

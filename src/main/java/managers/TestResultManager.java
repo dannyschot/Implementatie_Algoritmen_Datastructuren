@@ -9,7 +9,7 @@ public class TestResultManager {
         this.resultStrategy = resultStrategy;
     }
 
-    public void handleTestResults(String dataset, Long results) {
-        resultStrategy.writeToFile(dataset, results);
+    public void handleTestResults(String dataset, Long results, String fileName) {
+        resultStrategy.writeToFile(dataset, results, fileName);
     }
 }

@@ -34,7 +34,7 @@ public class TestTimSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void timSortShouldSortList() { // TODO:: Cast verwijderen
+    public void timSortShouldSortList() {
         //Arrange
         ArrayList<Double> unsorted1 = dataset.getFloat8001();
         Double[] unsorted2 = new Double[unsorted1.size()];
