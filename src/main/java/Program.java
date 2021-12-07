@@ -16,7 +16,7 @@ class Program {
         JSONHandler jsonHandler = new JSONHandler();
         InputStream is = reader.getFileFromResource("datasets/sorting.json");
         JSONObject jsonObject = jsonHandler.getJSONObjectFromInputStream(is);
-        TestingStrategy sortingTestStrategy = new SortingTestingStrategy();
+        TestingStrategy sortingTestStrategy = new SortingTestingStrategy<>();
         PerformanceTester sortingTester = new PerformanceTester(sortingTestStrategy);
 
         sortingTester.startTest(jsonObject);
