@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -33,13 +34,26 @@ public class TestBinearySearch {
     }
 
     @Test
+    public void performanceTest() {
+        BinarySearch<Long> binarySearch;
+        JSONArray jsonArray = (JSONArray) jsonObject.get("lijst_oplopend_10000");
+        binarySearch = new BinarySearch<>(jsonArray);
+
+        startTime = Instant.now();
+        int actual = binarySearch.find(8500L);
+        endTime = Instant.now();
+        delta = Duration.between(startTime, endTime).toNanos();
+        System.out.println("The time it takes for binary search to find element " + actual + " in upperhalf is: " + delta + " nanoseconds");
+    }
+
+    @Test
     public void binarySearchShouldReturnCorrectIndexWithLongData() {
         BinarySearch<Long> binarySearch;
         JSONArray jsonArray = (JSONArray) jsonObject.get("lijst_oplopend_10000");
         binarySearch = new BinarySearch<>(jsonArray);
 
-        int actual = binarySearch.find(4L);
-        int expected = 4 - 1;
+        int actual = binarySearch.find(400L);
+        int expected = 400 - 1;
 
         Assert.assertEquals(expected, actual);
     }
