@@ -7,8 +7,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.Before;
 import org.junit.Test;
-import utils.JSONHandler;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,15 +17,13 @@ import java.time.Instant;
 public class InsertionSortPerformanceTest {
     Instant startTime;
     Instant endTime;
-    Long delta;
-    JSONHandler jsonHandler;
+    Long delta;;
     JSONParser parser;
     JSONObject jsonObject;
     InsertionSort insertionSort;
 
     @Before
     public void setup() throws IOException, ParseException {
-        jsonHandler = new JSONHandler();
         parser = new JSONParser();
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
@@ -39,7 +35,7 @@ public class InsertionSortPerformanceTest {
     public void performanceTest() {
         for (Object o : jsonObject.keySet()) {
             String key = (String) o;
-            JSONArray jsonArray = jsonHandler.getJSONArray(jsonObject, key);
+            JSONArray jsonArray = (JSONArray) jsonObject.get(key);
             if (jsonArray.contains("string")) { //TODO:: Flexibiliteit toevoegen
                 continue;
             }
