@@ -4,22 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.RecursiveAction;
 
-public class SortTask<T> extends RecursiveAction {
-    private List<T> array;
-    private MergeSort mergeSort;
+public class SortTask<T extends Comparable<T>> extends RecursiveAction {
+    private final List<T> array;
+    private final MergeSort<T> mergeSort;
 
     public SortTask(List<T> array) {
         mergeSort = new MergeSort<>();
         this.array = array;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     protected void compute() {
         if (array.size() > 1) {
             int mid = array.size() / 2;
-
-            // Obtain the first half
+            
             ArrayList<T> firstHalf = copy(array, 0, mid);
             ArrayList<T> secondHalf = copy(array, mid, array.size());
 

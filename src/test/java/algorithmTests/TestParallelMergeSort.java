@@ -36,7 +36,7 @@ public class TestParallelMergeSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void parallelMergeSortShouldSortList() { // TODO:: Cast verwijderen
+    public void parallelMergeSortShouldSortList() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();

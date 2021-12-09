@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.concurrent.ForkJoinPool;
 
 public class ParallelMergeSort<T extends Comparable<T>> {
-
     public void sort(List<T> array) {
         try {
             SortTask<T> mainTask = new SortTask<T>(array);
