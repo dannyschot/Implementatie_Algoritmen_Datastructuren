@@ -5,6 +5,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,5 +47,13 @@ public class TestRadixSort {
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
+    }
+
+    @AfterClass
+    public static void endMessage() {
+        System.out.println("\n");
+        System.out.println("End of the radix sort test");
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("\n");
     }
 }

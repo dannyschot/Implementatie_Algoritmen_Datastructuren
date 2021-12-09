@@ -1,5 +1,7 @@
 package algorithms;
 
+import org.junit.AfterClass;
+
 import java.util.List;
 
 public class BinarySearch<T extends Comparable<T>> {
@@ -26,4 +28,5 @@ public class BinarySearch<T extends Comparable<T>> {
         }
         return data.size();
     }
+
 }

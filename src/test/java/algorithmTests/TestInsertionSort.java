@@ -5,9 +5,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -84,6 +83,7 @@ public class TestInsertionSort {
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+
     }
 
     @SuppressWarnings("unchecked")
@@ -107,7 +107,7 @@ public class TestInsertionSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void insertionSortShouldSortLijstGesorteerdAflopend3() {
+    public void insertionSortShouldSortLijstGesorteerdAflopend3() throws InterruptedException {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
@@ -122,6 +122,7 @@ public class TestInsertionSort {
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+
     }
 
     @SuppressWarnings("unchecked")
@@ -255,6 +256,14 @@ public class TestInsertionSort {
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @AfterClass
+    public static void endMessage() {
+        System.out.println("\n");
+        System.out.println("End of the insertion sort test");
+        System.out.println("------------------------------------------------------------------------------------");
+        System.out.println("\n");
     }
 
 }
