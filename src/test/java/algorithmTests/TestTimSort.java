@@ -51,8 +51,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_float_8001 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_float_8001 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -74,8 +74,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_aflopend_2 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_aflopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -97,8 +97,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_oplopend_2 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_oplopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -120,8 +120,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_gesorteerd_aflopend_3 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_gesorteerd_aflopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -143,8 +143,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_gesorteerd_oplopend_3 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_gesorteerd_oplopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -166,8 +166,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_herhaald_1000 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_herhaald_1000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -189,8 +189,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_leeg_0 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_leeg_0 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -212,8 +212,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_gesorteerde_strings in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_gesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -235,8 +235,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_ongesorteerde_strings in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_ongesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -258,8 +258,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_oplopend_10000 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_oplopend_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
@@ -281,8 +281,8 @@ public class TestTimSort {
         startTime = Instant.now();
         timSort.timSort(unsorted2, unsorted2.length);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("TimSort sorts lijst_willekeurig_10000 in: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("TimSort sorts lijst_willekeurig_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);

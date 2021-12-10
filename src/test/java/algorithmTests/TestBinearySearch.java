@@ -43,8 +43,8 @@ public class TestBinearySearch {
         startTime = Instant.now();
         int actual = binarySearch.find(8500L);
         endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toNanos();
-        System.out.println("The time it takes for binary search to find element " + actual + " in upperhalf is: " + delta + " nanoseconds");
+        delta = Duration.between(startTime, endTime).toMillis();
+        System.out.println("The time it takes for binary search to find element " + actual + " in upperhalf is: " + delta + " ms");
     }
 
     @Test
