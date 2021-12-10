@@ -23,7 +23,8 @@ import java.util.concurrent.TimeUnit;
 public class SelectionSortPerformanceTest {
     JSONParser parser;
     JSONObject jsonObject;
-    SelectionSort selectionSort;
+    SelectionSort selectionSortLijstWillekeurig10000;
+    SelectionSort selectionSortLijstFloat8001;
 
     @Setup
     public void setup() throws IOException, ParseException {
@@ -34,14 +35,21 @@ public class SelectionSortPerformanceTest {
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         BinarySearch<Long> binarySearch;
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
-        selectionSort = new SelectionSort(unsorted1);
+        JSONArray unsorted2 = (JSONArray) jsonObject.get("lijst_float_8001");
+        selectionSortLijstWillekeurig10000 = new SelectionSort(unsorted1);
+        selectionSortLijstFloat8001 = new SelectionSort(unsorted2);
 
     }
 
 
 
     @Benchmark
-    public void performanceTest() {
-        selectionSort.sort();
+    public void performanceTestLijstWillekeurig10000() {
+        selectionSortLijstWillekeurig10000.sort();
+    }
+
+    @Benchmark
+    public void performanceTestLijstFloat8001() {
+        selectionSortLijstFloat8001.sort();
     }
 }

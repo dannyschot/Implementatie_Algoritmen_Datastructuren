@@ -24,7 +24,8 @@ public class InsertionSortPerformanceTest {
     JSONParser parser;
     JSONObject jsonObject;
     InsertionSort insertionSort;
-    ArrayList<Double> unsorted2;
+    JSONArray lijstWillekeurig10000;
+    JSONArray lijstFloat8001;
 
     @Setup
     public void setup() throws IOException, ParseException {
@@ -34,16 +35,19 @@ public class InsertionSortPerformanceTest {
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         BinarySearch<Long> binarySearch;
-        JSONArray jsonArray = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
+        lijstWillekeurig10000 = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
         insertionSort = new InsertionSort();
-        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
-        unsorted2 = (ArrayList<Double>) unsorted1.clone();
+        lijstFloat8001 = (JSONArray) jsonObject.get("lijst_float_8001");
     }
 
 
+    @Benchmark
+    public void performanceTestLijstWillekeurig10000() {
+        insertionSort.sort(lijstWillekeurig10000);
+    }
 
     @Benchmark
-    public void performanceTest() {
-        insertionSort.sort(unsorted2);
+    public void performanceTestLijstFloat8001() {
+        insertionSort.sort(lijstFloat8001);
     }
 }
