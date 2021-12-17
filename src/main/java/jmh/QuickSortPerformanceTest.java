@@ -1,7 +1,6 @@
 package jmh;
 
-import algorithms.BinarySearch;
-import algorithms.InsertionSort;
+import algorithms.QuickSort;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,13 +14,13 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+@Warmup(iterations = 2, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 @Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 @State(Scope.Benchmark)
-public class InsertionSortPerformanceTest {
+public class QuickSortPerformanceTest {
+    QuickSort quickSort;
     JSONParser parser;
     JSONObject jsonObject;
-    InsertionSort insertionSort;
     JSONArray lijstAflopend2;
     JSONArray lijstOplend2;
     JSONArray lijstGesorteerdAflopend3;
@@ -38,11 +37,12 @@ public class InsertionSortPerformanceTest {
 
     @Setup
     public void setup() throws IOException, ParseException {
+        System.out.println("RUNNING SETUP");
         parser = new JSONParser();
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        insertionSort = new InsertionSort();
+        quickSort = new QuickSort();
         lijstAflopend2 = (JSONArray) jsonObject.get("lijst_aflopend_2");
         lijstOplend2 = (JSONArray) jsonObject.get("lijst_oplopend_2");
         lijstGesorteerdAflopend3 = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
@@ -61,78 +61,78 @@ public class InsertionSortPerformanceTest {
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstWillekeurig10000() {
-        insertionSort.sort(lijstWillekeurig10000);
+        quickSort.sort(lijstWillekeurig10000);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstFloat8001() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstGesorteerdAflopend3() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstAflopend2() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstOplend2() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstGesorteerdOplopend3() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstLeeg0() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstHerhaald1000() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstGesorteerdeStrings() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstOplopend10000() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstWillekeurig3() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstOngesorteerdeStrings() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 
     @SuppressWarnings("unchecked")
     @Benchmark
     public void performanceTestLijstMetStrings() {
-        insertionSort.sort(lijstFloat8001);
+        quickSort.sort(lijstFloat8001);
     }
 }

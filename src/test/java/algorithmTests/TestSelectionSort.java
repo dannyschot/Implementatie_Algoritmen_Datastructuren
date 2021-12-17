@@ -43,11 +43,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_float_8001 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -77,11 +73,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_aflopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -97,11 +89,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_oplopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -117,11 +105,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_gesorteerd_aflopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -137,11 +121,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_gesorteerd_oplopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -157,11 +137,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_herhaald_1000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -177,11 +153,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_leeg_0 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -197,11 +169,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_gesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -217,11 +185,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_ongesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -237,11 +201,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_oplopend_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -257,11 +217,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         selectionSort.sort();
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("selectionSort sorts lijst_willekeurig_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());

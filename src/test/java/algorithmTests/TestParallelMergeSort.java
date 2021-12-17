@@ -13,17 +13,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class TestParallelMergeSort {
     ParallelMergeSort parallelMergeSort;
     JSONObject jsonObject;
     JSONParser parser;
-    Instant startTime;
-    Instant endTime;
-    long delta;
+
 
 
     @Before
@@ -44,11 +40,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_float_8001 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -77,11 +69,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_aflopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -96,11 +84,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_oplopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -115,11 +99,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_gesorteerd_aflopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -134,11 +114,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_gesorteerd_oplopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -153,11 +129,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_herhaald_1000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -172,11 +144,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts llijst_leeg_0 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -191,11 +159,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sort sorts lijst_gesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -210,11 +174,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sort sorts lijst_ongesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -229,11 +189,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sort sorts lijst_oplopend_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -248,11 +204,7 @@ public class TestParallelMergeSort {
 
         //Act
         parallelMergeSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         parallelMergeSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("parallelMergeSort sorts lijst_willekeurig_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());

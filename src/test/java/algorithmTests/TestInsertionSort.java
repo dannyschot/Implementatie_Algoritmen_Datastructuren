@@ -42,11 +42,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_float_8001 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -95,11 +91,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_oplopend_2 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -114,11 +106,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_gesorteerd_aflopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -133,12 +121,8 @@ public class TestInsertionSort {
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
 
         //Act
-        insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
+        insertionSort.sortWithSortingLib(unsorted1);;
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_gesorteerd_oplopend_3 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -153,11 +137,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_herhaald_1000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -172,11 +152,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts llijst_leeg_0 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -191,11 +167,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_gesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -210,11 +182,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_ongesorteerde_strings in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -229,11 +197,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_oplopend_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -248,11 +212,7 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_willekeurig_10000 in: " + delta + " Milliseconds");
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
@@ -265,5 +225,4 @@ public class TestInsertionSort {
         System.out.println("------------------------------------------------------------------------------------");
         System.out.println("\n");
     }
-
 }
