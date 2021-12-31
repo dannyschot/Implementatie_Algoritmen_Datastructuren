@@ -39,7 +39,7 @@ public class DynamicArray<E> extends AbstractList<E> { // TODO:: In alle classes
     @Override
     public void add(int index, E element) {
         if (current == capacity) {
-            E[] temp = (E[]) new Object[2 * capacity]; // TODO:: Methode van maken
+            E[] temp = (E[]) new Object[2 * capacity];
         }
 
         if (current - index >= 0) {
@@ -88,9 +88,4 @@ public class DynamicArray<E> extends AbstractList<E> { // TODO:: In alle classes
         return index > capacity;
     }
 
-    public void showElements() {
-        for (E e : array) {
-            System.out.println(e);
-        }
-    }
 }

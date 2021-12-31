@@ -13,9 +13,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 3, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-@Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+@Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class ParallelMergeSortPerformanceTest {
     JSONParser parser;

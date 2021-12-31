@@ -34,16 +34,10 @@ public class AVLSearchTreeTest {
         AVLTree<Double> avlSearchTreeDouble = new AVLTree<>();
         JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_float_8001");
         int sizeOfJsonArray = listWithFloat.size();
-        Instant startTime;
-        long delta;
 
-        startTime = Instant.now();
         for (Object element : listWithFloat) {
             avlSearchTreeDouble.insert((Double) element);
         }
-        delta = Duration.between(startTime, Instant.now()).toMillis();
-
-        System.out.println("Duration for inserting Double into AVL Tree: " + delta + "ms");
         int sizeOfAVLTree = avlSearchTreeDouble.nNodes;
 
         Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);

@@ -73,11 +73,6 @@ public class TestInsertionSort {
         insertionSort.sortWithSortingLib(unsorted1);
         startTime = Instant.now();
         insertionSort.sort(unsorted2);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("Insertion sort sorts lijst_aflopend_2 in: " + delta + " Milliseconds");
-
-        //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
 
     }
@@ -217,6 +212,16 @@ public class TestInsertionSort {
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void insertionSortShouldSortLijstOnsorteerbaar() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_onsorteerbaar_3");
+        insertionSort.sort(unsorted1);
+    }
+
+
 
     @AfterClass
     public static void endMessage() {

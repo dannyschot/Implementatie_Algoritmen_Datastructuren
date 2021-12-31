@@ -1,10 +1,12 @@
 package datastructures;
 
 public class Vertex<T> {
-    T data;
+    public T label;
     boolean wasVisited;
+    public boolean isInTree;
 
-    public Vertex(T data) {
-        this.data = data;
+    public Vertex(T label) {
+        this.label = label;
+        this.isInTree = false;
     }
 }

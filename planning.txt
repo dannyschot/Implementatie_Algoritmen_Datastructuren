@@ -1,20 +1,68 @@
-Dinsdag:
-	ochtend:	theorie
-	middag:		bp impl
+WK52:
 
-Woensdag:
-	ochtend:	op
-	middag:		op
+Maandagochtend:		BP Impl
+	middag: 	BP Impl
 
-Donderdag:
-	ochtend:	bp impl
-	middag:		bp impl
+Dinsdagochtend:		BP Impl
+	middag:		Vrij
 
-Vrijdag:
-	ochtend:	theorie
-	middag:		theorie
+Woensdagochtend:	Vrij			
+	middag:		Vrij
 
-Zaterdag:
-	ochtend:	op
-	middag:		op				
-		
+Donderdagochtend:	OP
+	middag:		Vrij
+
+Vrijdagochtend:		OP
+	middag:		OP
+
+Zaterdagochtend:	Vrij
+	middag:		Vrij
+
+Zondagochtend:		Vrij
+	middag:		OP
+
+WK1:
+
+Maandagochtend:		Vrij
+	middag: 	Vrij
+
+Dinsdagochtend:		BP Impl
+	middag:		BP Impl
+
+Woensdagochtend:	OP
+	middag:		OP
+
+Donderdagochtend:	Theorie
+	middag:		Theorie
+
+Vrijdagochtend:		Vrij
+	middag:		Theorie
+
+Zaterdagochtend:	Theorie
+	middag:		Theorie
+
+Zondagochtend:		Vrij
+	middag:		Vrij
+
+WK2:
+
+Maandagochtend:		Vrij
+	middag: 	Vrij
+
+Dinsdagochtend:		BP Impl
+	middag:		BP Impl
+
+Woensdagochtend:	OP
+	middag:		OP
+
+Donderdagochtend:	Theorie
+	middag:		Theorie
+
+Vrijdagochtend:		Vrij
+	middag:		Theorie
+
+Zaterdagochtend:	Theorie
+	middag:		Theorie
+
+Zondagochtend:		Vrij
+	middag:		Vrij

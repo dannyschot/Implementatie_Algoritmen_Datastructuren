@@ -25,8 +25,6 @@ public class DoublyLinkedList<E>  {
 
 
     public void deleteFirst() {
-        Link<E> temp = first;
-
         if (first.next == null) {
             last = null;
         } else {

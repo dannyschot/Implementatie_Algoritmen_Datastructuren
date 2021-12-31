@@ -16,18 +16,22 @@ public class PriorityQueueCris<E extends Comparable<? super E>> implements IPrio
     public void enqueue(E data) {
         int j;
 
-        if (nItems == 0) {
-            queueArray[nItems++] = data;
-        } else {
-            for (j = nItems - 1; j >= 0; j--) {
-                if (queueArray[j].compareTo(data) < 0) {
-                    queueArray[j + 1] = queueArray[j];
-                } else {
-                    break;
+        try {
+            if (nItems == 0) {
+                queueArray[nItems++] = data;
+            } else {
+                for (j = nItems - 1; j >= 0; j--) {
+                    if (queueArray[j].compareTo(data) < 0) {
+                        queueArray[j + 1] = queueArray[j];
+                    } else {
+                        break;
+                    }
                 }
+                queueArray[j + 1] = data;
+                nItems++;
             }
-            queueArray[j + 1] = data;
-            nItems++;
+        } catch (Exception e) {
+            System.out.println(e);
         }
     }
 
@@ -53,5 +57,11 @@ public class PriorityQueueCris<E extends Comparable<? super E>> implements IPrio
 
     public int size() {
         return nItems;
+    }
+
+    public void showArray() {
+        for (int i = 0; i < queueArray.length; i++) {
+            System.out.println(queueArray[i]);
+        }
     }
 }

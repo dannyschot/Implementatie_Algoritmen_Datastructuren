@@ -1,7 +1,6 @@
 package jmh;
 
-import algorithms.BinarySearch;
-import algorithms.InsertionSort;
+import datastructures.DynamicArray;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,13 +14,22 @@ import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
-@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class InsertionSortPerformanceTest {
-    JSONParser parser;
+public class DynamicArrayPerformanceTest {
     JSONObject jsonObject;
-    InsertionSort insertionSort;
+    JSONParser parser;
+    DynamicArray<Double> dsFloat8001;
+    DynamicArray<Long> dsLijstAflopend2;
+    DynamicArray<Long> dsLijstOplopend2;
+    DynamicArray<Long> dsLijstGesorteerdAflopend3;
+    DynamicArray<Long> dsLijstGesorteerdOplopend3;
+    DynamicArray<Long> dsLijstHerhaald1000;
+    DynamicArray<Long> dsLijstLeeg0;
+    DynamicArray<String> dsLijstGesorteerdeStrings;
+    DynamicArray<Long> dsLijstWillekeurig10000;
+    DynamicArray<Long> dsLijstWillekeurig3;
     JSONArray lijstAflopend2;
     JSONArray lijstOplend2;
     JSONArray lijstGesorteerdAflopend3;
@@ -42,7 +50,6 @@ public class InsertionSortPerformanceTest {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        insertionSort = new InsertionSort();
         lijstAflopend2 = (JSONArray) jsonObject.get("lijst_aflopend_2");
         lijstOplend2 = (JSONArray) jsonObject.get("lijst_oplopend_2");
         lijstGesorteerdAflopend3 = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
@@ -56,83 +63,78 @@ public class InsertionSortPerformanceTest {
         lijstFloat8001 = (JSONArray) jsonObject.get("lijst_float_8001");
         lijstOngesorteerdeStrings = (JSONArray) jsonObject.get("lijst_ongesorteerde_strings");
         lijstMetStrings = (JSONArray) jsonObject.get("lijst_met_strings");
+        dsFloat8001 = new DynamicArray<>();
+        dsLijstAflopend2 = new DynamicArray<>();
+        dsLijstOplopend2 = new DynamicArray<>();
+        dsLijstGesorteerdAflopend3 = new DynamicArray<>();
+        dsLijstGesorteerdOplopend3 = new DynamicArray<>();
+        dsLijstLeeg0 = new DynamicArray<>();
+        dsLijstWillekeurig10000 = new DynamicArray<>();
+        dsLijstGesorteerdeStrings = new DynamicArray<>();
+        dsLijstHerhaald1000 = new DynamicArray<>();
+        dsLijstWillekeurig3 = new DynamicArray<>();
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstWillekeurig10000() {
-        insertionSort.sort(lijstWillekeurig10000);
+    public void shouldInsertLijstOplend2(){
+        for (Object element : lijstOplend2) {
+            dsLijstOplopend2.add((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstFloat8001() {
-        insertionSort.sort(lijstFloat8001);
+    public void shouldInsertFloat8001(){
+        for (Object element : lijstFloat8001) {
+            dsFloat8001.add((Double) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstGesorteerdAflopend3() {
-        insertionSort.sort(lijstGesorteerdAflopend3);
+    public void shouldInsertLijstGesorteerdAflopend3(){
+        for (Object element : lijstGesorteerdAflopend3) {
+            dsLijstGesorteerdAflopend3.add((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstAflopend2() {
-        insertionSort.sort(lijstAflopend2);
+    public void shouldInsertLijstGesorteerdOplopend3(){
+        for (Object element : lijstGesorteerdOplopend3) {
+            dsLijstGesorteerdOplopend3.add((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstOplend2() {
-        insertionSort.sort(lijstOplend2);
+    public void shouldInsertLijstHerhaald1000(){
+        for (Object element : lijstHerhaald1000) {
+            dsLijstHerhaald1000.add((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstGesorteerdOplopend3() {
-        insertionSort.sort(lijstGesorteerdOplopend3);
+    public void shouldInsertLijstLeeg0(){
+        for (Object element : lijstLeeg0) {
+            dsLijstLeeg0.add((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstLeeg0() {
-        insertionSort.sort(lijstLeeg0);
+    public void shouldInsertLijstGesorteerdeStrings(){
+        for (Object element : lijstGesorteerdeStrings) {
+            dsLijstGesorteerdeStrings.add((String) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstHerhaald1000() {
-        insertionSort.sort(lijstHerhaald1000);
+    public void shouldInsertLijstWillekeurig10000(){
+        for (Object element : lijstWillekeurig10000) {
+            dsLijstWillekeurig10000.add((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstGesorteerdeStrings() {
-        insertionSort.sort(lijstGesorteerdeStrings);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstOplopend10000() {
-        insertionSort.sort(lijstOplopend10000);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstWillekeurig3() {
-        insertionSort.sort(lijstWillekeurig3);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstOngesorteerdeStrings() {
-        insertionSort.sort(lijstOngesorteerdeStrings);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstMetStrings() {
-        insertionSort.sort(lijstMetStrings);
+    public void shouldInsertLijstWillekeurig3(){
+        for (Object element : lijstWillekeurig3) {
+            dsLijstWillekeurig3.add((Long) element);
+        }
     }
 }

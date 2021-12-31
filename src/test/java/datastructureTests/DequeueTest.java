@@ -20,6 +20,7 @@ public class DequeueTest {
     JSONObject jsonObject;
     JSONParser parser;
     IDequeue<Integer> testDequeue;
+    Instant startTime;
 
     @Before
     public void setup() throws IOException, ParseException {
@@ -31,67 +32,272 @@ public class DequeueTest {
     }
 
     @Test
-    public void shouldInsertDataSetDoubleIntoDequeue() {
-        JSONArray listWithDouble = (JSONArray) jsonObject.get("lijst_float_8001");
-        IDequeue<Double> doubleDequeue = new Deque<>(listWithDouble.size());
-        Instant startTime;
-        long delta;
+    public void shouldInsertEigenLijst() {
+        JSONArray list = (JSONArray) jsonObject.get("eigen_lijst");
 
-        int actual = listWithDouble.size();
+        Deque<Long> doubleStack = new Deque<>(list.size());
+
+        int actual = list.size();
 
         startTime = Instant.now();
-        for (Object element : listWithDouble) {
-            doubleDequeue.enqueFront((Double) element);
+        for (Object element : list) {
+            doubleStack.enqueFront((Long) element);
         }
-        delta = Duration.between(startTime, Instant.now()).toMillis();
-        System.out.println("Duration for inserting Double into Dequeue: " + delta + "ms");
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("Eigen Lijst insertion takes: " + duration + " ms");
 
-        int expected = doubleDequeue.size();
+        int expected = doubleStack.size();
 
         Assert.assertEquals(actual, expected);
     }
 
     @Test
-    public void shouldInsertDataSetLongIntoDequeue() {
-        JSONArray listWithLong = (JSONArray) jsonObject.get("lijst_herhaald_1000");
-        IDequeue<Long> longDequeue = new Deque<>(listWithLong.size());
-        Instant startTime;
-        long delta;
+    public void shouldInsertLijstFloat8001() {
+        JSONArray listWithDouble = (JSONArray) jsonObject.get("lijst_float_8001");
 
-        int expected = listWithLong.size();
+        Deque<Double> doubleStack = new Deque<>(listWithDouble.size());
+
+        int actual = listWithDouble.size();
+        startTime = Instant.now();
+        for (Object element : listWithDouble) {
+            doubleStack.enqueFront((Double) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_float_8001 insertion takes: " +duration + " ms");
+
+        int expected = doubleStack.size();
+
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldInsertLijstAflopend2() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_aflopend_2");
+
+        Deque<Long> doubleStack = new Deque<>(list.size());
+
+        int actual = list.size();
 
         startTime = Instant.now();
-        for (Object element : listWithLong) {
-            longDequeue.enqueFront((Long) element);
+        for (Object element : list) {
+            doubleStack.enqueFront((Long) element);
         }
-        delta = Duration.between(startTime, Instant.now()).toMillis();
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_aflopend_2 insertion takes: " + duration + " ms");
 
-        System.out.println("Duration for inserting Long into Dequeue: " + delta + "ms");
-        int actual = longDequeue.size();
+        int expected = doubleStack.size();
+
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldInsertLijstOplopend2() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_oplopend_2");
+
+        Deque<Long> doubleStack = new Deque<>(list.size());
+
+        int actual = list.size();
+
+        startTime = Instant.now();
+        for (Object element : list) {
+            doubleStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_oplopend_2 insertion takes: " + duration + " ms");
+
+        int expected = doubleStack.size();
+
+        Assert.assertEquals(actual, expected);
+    }
+
+    @Test
+    public void shouldInsertLijstHerhaald1000() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_herhaald_1000");
+        Deque<Long> longStack = new Deque<>(list.size());
+
+        int expected = list.size();
+
+        startTime = Instant.now();
+        for (Object element : list) {
+            longStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_herhaald_1000 insertion takes: " + duration + " ms");
+
+        int actual = longStack.size();
 
         Assert.assertEquals(expected, actual);
     }
 
     @Test
-    public void shouldInsertDataSetStringsIntoDequeue() {
+    public void shouldInsertLijstMetStrings() {
         JSONArray listWithStrings = (JSONArray) jsonObject.get("lijst_met_strings");
-        IDequeue<String> stringDequeue = new Deque<>(listWithStrings.size());
-
-        Instant startTime;
-        long delta;
+        Deque<String> stringStack = new Deque<>(listWithStrings.size());
 
         int expected = listWithStrings.size();
 
         startTime = Instant.now();
         for (Object element : listWithStrings) {
-            stringDequeue.enqueFront((String) element);
+            stringStack.enqueFront((String) element);
         }
-        delta = Duration.between(startTime, Instant.now()).toMillis();
-        System.out.println("Duration for inserting String into Dequeue: " + delta + "ms");
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_met_strings insertion takes: " + duration + " ms");
 
-        int actual = stringDequeue.size();
+        int actual = stringStack.size();
 
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldInsertGesorteerdAflopend3() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
+        Deque<Long> stringStack = new Deque<>(list.size());
+
+        int expected = list.size();
+
+        startTime = Instant.now();
+        for (Object element : list) {
+            stringStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_gesorteerd_aflopend_3 insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldInsertGesorteerdOplopend3() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_gesorteerd_oplopend_3");
+        Deque<Long> stringStack = new Deque<>(list.size());
+
+        int expected = list.size();
+
+        startTime = Instant.now();
+        for (Object element : list) {
+            stringStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_gesorteerd_oplopend_3 insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldInsertHerhaald1000() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_herhaald_1000");
+        Deque<Long> stringStack = new Deque<>(list.size());
+
+        int expected = list.size();
+
+        startTime = Instant.now();
+        for (Object element : list) {
+            stringStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_herhaald_1000 insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldInsertLijstLeeg0() {
+        JSONArray listWithStrings = (JSONArray) jsonObject.get("lijst_leeg_0");
+        Deque<Long> stringStack = new Deque<>(listWithStrings.size());
+
+        int expected = listWithStrings.size();
+
+        startTime = Instant.now();
+        for (Object element : listWithStrings) {
+            stringStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_leeg_0 insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldInsertLijstGesorteerdeStrings() {
+        JSONArray listWithStrings = (JSONArray) jsonObject.get("lijst_gesorteerde_strings");
+        Deque<String> stringStack = new Deque<>(listWithStrings.size());
+
+        int expected = listWithStrings.size();
+
+        startTime = Instant.now();
+        for (Object element : listWithStrings) {
+            stringStack.enqueFront((String) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_gesorteerde_strings insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldInsertLijstOplopend10000() {
+        JSONArray listWithStrings = (JSONArray) jsonObject.get("lijst_oplopend_10000");
+        Deque<Long> stringStack = new Deque<>(listWithStrings.size());
+
+        int expected = listWithStrings.size();
+
+        startTime = Instant.now();
+        for (Object element : listWithStrings) {
+            stringStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_oplopend_10000 insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldInsertLijstWillekeurig10000() {
+        JSONArray listWithStrings = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
+        Deque<Long> stringStack = new Deque<>(listWithStrings.size());
+
+        int expected = listWithStrings.size();
+
+        startTime = Instant.now();
+        for (Object element : listWithStrings) {
+            stringStack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_willekeurig_10000 insertion takes: " + duration + " ms");
+
+        int actual = stringStack.size();
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldInsertLijstWillekeurig3() {
+        JSONArray list = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        Deque<Long> stack = new Deque<>(list.size());
+
+        int expected = list.size();
+
+        startTime = Instant.now();
+        for (Object element : list) {
+            stack.enqueFront((Long) element);
+        }
+        long duration = Duration.between(startTime, Instant.now()).toMillis();
+        System.out.println("lijst_willekeurig_3 insertion takes: " + duration + " ms");
+
+        int actual = stack.size();
+        Assert.assertEquals(expected, actual);
+
     }
 
     @Test

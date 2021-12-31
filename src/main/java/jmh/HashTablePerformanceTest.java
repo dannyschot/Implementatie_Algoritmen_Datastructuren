@@ -1,6 +1,9 @@
 package jmh;
 
-import algorithms.BinarySearch;
+import com.google.gson.Gson;
+import datastructures.Deque;
+import datastructures.HashTableCris;
+import datastructures.IDequeue;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -10,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
@@ -17,28 +21,26 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class BinarySearchPerformanceTest {
-    JSONParser parser;
+public class HashTablePerformanceTest<K, V> {
     JSONObject jsonObject;
-    BinarySearch<Long> binarySearch;
+    JSONParser parser;
+    HashMap<String, V> result;
+    HashTableCris<String, V> hashTableCris;
 
     @Setup
     public void setup() throws IOException, ParseException {
-        System.out.println("RUNNING SETUP");
         parser = new JSONParser();
         ClassLoader classLoader = getClass().getClassLoader();
-        InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
+        InputStream inputStream = classLoader.getResourceAsStream("datasets/hashing.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        BinarySearch<Long> binarySearch;
-        JSONArray jsonArray = (JSONArray) jsonObject.get("lijst_oplopend_10000");
-        this.binarySearch = new BinarySearch<>(jsonArray);
+        result = new Gson().fromJson(jsonObject.get("hashtabelsleutelswaardes").toString(), HashMap.class);
+        hashTableCris = new HashTableCris<>(result.size());
     }
-
-
 
     @Benchmark
-    public void performanceTest() {
-        int actual = binarySearch.find(8500L);
+    public void hashMapDataInsertion() {
+        for (String key : result.keySet()) {
+            hashTableCris.insert(key, result.get(key));
+        }
     }
-
 }

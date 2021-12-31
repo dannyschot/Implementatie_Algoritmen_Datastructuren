@@ -2,15 +2,17 @@ package datastructures;
 
 public class GraphCris<T> {
     private Vertex vertexList[];
-    private int adjMat[][];
+    private long adjMat[][];
     private int nVerts;
     private StackCris<Integer> stack;
+    DynamicArray<Object> bfsResult;
 
     public GraphCris(int size) {
         vertexList = new Vertex[size];
-        adjMat = new int[size][size];
+        adjMat = new long[size][size];
         nVerts = 0;
         stack = new StackCris<>(size);
+        bfsResult = new DynamicArray<>();
 
         for (int j = 0; j < size; j++) {
             for (int k = 0; k < size; k++) {
@@ -23,13 +25,14 @@ public class GraphCris<T> {
         vertexList[nVerts++] = new Vertex(label);
     }
 
-    public void addEdge(int start, int end) {
-        adjMat[start][end] = 1;
-        adjMat[end][start] = 1;
+    public void addEdge(long start, long end) {
+        adjMat[(int) start][(int) end] = 1;
+        adjMat[(int) end][(int) start] = 1;
     }
 
     public void displayVertex(int v) {
-        System.out.println(vertexList[v].data);
+        bfsResult.add(vertexList[v].label);
+        System.out.println(vertexList[v].label);
     }
 
     public void depthFirstSearch() {
@@ -61,4 +64,13 @@ public class GraphCris<T> {
         }
         return -1;
     }
+
+    public DynamicArray<Object> getBfsResults() {
+        return bfsResult;
+    }
+
+    public int getBfsResultsSize() {
+        return bfsResult.size();
+    }
+
 }

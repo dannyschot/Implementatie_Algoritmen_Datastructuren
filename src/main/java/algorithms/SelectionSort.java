@@ -13,14 +13,8 @@ public class SelectionSort<T extends Comparable<T>> { // TODO:: Kijken of constr
         nElements = data.size();
     }
 
-    public void sortWithSortingLib(ArrayList<T> array) {
-        Collections.sort(array);
-    }
-
-
     public void sort() {
         int out, in, min;
-
         try {
             for (out = 0; out < nElements; out++) {
                 min = out;
@@ -42,9 +36,7 @@ public class SelectionSort<T extends Comparable<T>> { // TODO:: Kijken of constr
         unsortedList.set(two, temp);
     }
 
-    public void display() {
-        for(T element : unsortedList) {
-            System.out.println(element);
-        }
+    public void sortWithSortingLib(ArrayList<T> array) {
+        Collections.sort(array);
     }
 }

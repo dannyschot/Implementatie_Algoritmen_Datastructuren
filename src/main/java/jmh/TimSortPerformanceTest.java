@@ -13,9 +13,9 @@ import java.nio.charset.StandardCharsets;
 import java.util.concurrent.TimeUnit;
 
 @BenchmarkMode(Mode.AverageTime)
-@OutputTimeUnit(TimeUnit.NANOSECONDS)
-@Warmup(iterations = 2, time = 1, timeUnit = TimeUnit.NANOSECONDS)
-@Measurement(iterations = 3, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+@OutputTimeUnit(TimeUnit.MILLISECONDS)
+@Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.NANOSECONDS)
+@Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
 public class TimSortPerformanceTest {
     TimSort timSort;
@@ -34,8 +34,8 @@ public class TimSortPerformanceTest {
     JSONArray lijstMetStrings;
     JSONArray lijstWillekeurig10000;
     JSONArray lijstFloat8001;
-    Double[] lijstA2;
-    Double[] lijstW1000;
+    Long[] lijstA2;
+    Long[] lijstW1000;
     Double[] lijstF8001;
     Long[] lijstAfl3;
     Long[] lijstOpl2;
@@ -51,14 +51,13 @@ public class TimSortPerformanceTest {
 
     @Setup
     public void setup() throws IOException, ParseException {
-        System.out.println("RUNNING SETUP");
         parser = new JSONParser();
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
         timSort = new TimSort();
         lijstAflopend2 = (JSONArray) jsonObject.get("lijst_aflopend_2");
-        lijstA2 = getListDouble(lijstAflopend2);
+        lijstA2 = getListLong(lijstAflopend2);
         lijstOplend2 = (JSONArray) jsonObject.get("lijst_oplopend_2");
         lijstOpl2 = getListLong(lijstOplend2);
         lijstGesorteerdAflopend3 = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
@@ -66,13 +65,12 @@ public class TimSortPerformanceTest {
         lijstGesorteerdOplopend3 = (JSONArray) jsonObject.get("lijst_gesorteerd_oplopend_3");
         lijstOpl3 = getListLong(lijstGesorteerdOplopend3);
         lijstWillekeurig10000 = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
-        lijstW1000 = getListDouble(lijstWillekeurig10000);
+        lijstW1000 = getListLong(lijstWillekeurig10000);
         lijstLeeg0 = (JSONArray) jsonObject.get("lijst_leeg_0");
         lijstLeeg = getListLong(lijstLeeg0);
         lijstHerhaald1000 = (JSONArray) jsonObject.get("lijst_herhaald_1000");
         lijstH1000 = getListLong(lijstHerhaald1000);
         lijstGesorteerdeStrings = (JSONArray) jsonObject.get("lijst_gesorteerde_strings");
-        lijstOngStr = getListString(lijstOngesorteerdeStrings);
         lijstGeStr = getListString(lijstGesorteerdeStrings);
         lijstOplopend10000 = (JSONArray) jsonObject.get("lijst_oplopend_10000");
         lijstOpl10 = getListLong(lijstOplopend10000);
@@ -81,6 +79,7 @@ public class TimSortPerformanceTest {
         lijstFloat8001 = (JSONArray) jsonObject.get("lijst_float_8001");
         lijstF8001 = getListDouble(lijstFloat8001);
         lijstOngesorteerdeStrings = (JSONArray) jsonObject.get("lijst_ongesorteerde_strings");
+        lijstOngStr = getListString(lijstOngesorteerdeStrings);
         lijstMetStrings = (JSONArray) jsonObject.get("lijst_met_strings");
         lijstMStr = getListString(lijstMetStrings);
     }
@@ -192,5 +191,4 @@ public class TimSortPerformanceTest {
     public void performanceTestLijstMetStrings() {
         timSort.timSort(lijstMStr, lijstMStr.length);
     }
-
 }

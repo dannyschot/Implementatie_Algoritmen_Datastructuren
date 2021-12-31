@@ -1,7 +1,6 @@
 package jmh;
 
-import algorithms.BinarySearch;
-import algorithms.InsertionSort;
+import datastructures.AVLTree;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -18,10 +17,19 @@ import java.util.concurrent.TimeUnit;
 @Warmup(iterations = 0, time = 1, timeUnit = TimeUnit.NANOSECONDS)
 @Measurement(iterations = 1, time = 1, timeUnit = TimeUnit.MILLISECONDS)
 @State(Scope.Benchmark)
-public class InsertionSortPerformanceTest {
-    JSONParser parser;
+public class AVLSearchTreePerformanceTest {
     JSONObject jsonObject;
-    InsertionSort insertionSort;
+    JSONParser parser;
+    AVLTree<Double> dsFloat8001;
+    AVLTree<Long> dsLijstAflopend2;
+    AVLTree<Long> dsLijstOplopend2;
+    AVLTree<Long> dsLijstGesorteerdAflopend3;
+    AVLTree<Long> dsLijstGesorteerdOplopend3;
+    AVLTree<Long> dsLijstHerhaald1000;
+    AVLTree<Long> dsLijstLeeg0;
+    AVLTree<String> dsLijstGesorteerdeStrings;
+    AVLTree<Long> dsLijstWillekeurig10000;
+    AVLTree<Long> dsLijstWillekeurig3;
     JSONArray lijstAflopend2;
     JSONArray lijstOplend2;
     JSONArray lijstGesorteerdAflopend3;
@@ -36,13 +44,13 @@ public class InsertionSortPerformanceTest {
     JSONArray lijstWillekeurig10000;
     JSONArray lijstFloat8001;
 
+
     @Setup
     public void setup() throws IOException, ParseException {
         parser = new JSONParser();
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-        insertionSort = new InsertionSort();
         lijstAflopend2 = (JSONArray) jsonObject.get("lijst_aflopend_2");
         lijstOplend2 = (JSONArray) jsonObject.get("lijst_oplopend_2");
         lijstGesorteerdAflopend3 = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
@@ -56,83 +64,86 @@ public class InsertionSortPerformanceTest {
         lijstFloat8001 = (JSONArray) jsonObject.get("lijst_float_8001");
         lijstOngesorteerdeStrings = (JSONArray) jsonObject.get("lijst_ongesorteerde_strings");
         lijstMetStrings = (JSONArray) jsonObject.get("lijst_met_strings");
+        dsFloat8001 = new AVLTree<>();
+        dsLijstAflopend2 = new AVLTree<>();
+        dsLijstOplopend2 = new AVLTree<>();
+        dsLijstGesorteerdAflopend3 = new AVLTree<>();
+        dsLijstGesorteerdOplopend3 = new AVLTree<>();
+        dsLijstLeeg0 = new AVLTree<>();
+        dsLijstWillekeurig10000 = new AVLTree<>();
+        dsLijstGesorteerdeStrings = new AVLTree<>();
+        dsLijstHerhaald1000 = new AVLTree<>();
+        dsLijstWillekeurig3 = new AVLTree<>();
     }
 
-    @SuppressWarnings("unchecked")
+
     @Benchmark
-    public void performanceTestLijstWillekeurig10000() {
-        insertionSort.sort(lijstWillekeurig10000);
+    public void shouldInsertLijstAflopend2(){
+        for (Object element : lijstAflopend2) {
+            dsLijstAflopend2.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstFloat8001() {
-        insertionSort.sort(lijstFloat8001);
+    public void shouldInsertLijstOplend2(){
+        for (Object element : lijstOplend2) {
+            dsLijstOplopend2.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstGesorteerdAflopend3() {
-        insertionSort.sort(lijstGesorteerdAflopend3);
+    public void shouldInsertFloat8001(){
+        for (Object element : lijstFloat8001) {
+            dsFloat8001.insert((Double) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstAflopend2() {
-        insertionSort.sort(lijstAflopend2);
+    public void shouldInsertLijstGesorteerdAflopend3(){
+        for (Object element : lijstGesorteerdAflopend3) {
+            dsLijstGesorteerdAflopend3.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstOplend2() {
-        insertionSort.sort(lijstOplend2);
+    public void shouldInsertLijstGesorteerdOplopend3(){
+        for (Object element : lijstGesorteerdOplopend3) {
+            dsLijstGesorteerdOplopend3.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstGesorteerdOplopend3() {
-        insertionSort.sort(lijstGesorteerdOplopend3);
+    public void shouldInsertLijstHerhaald1000(){
+        for (Object element : lijstHerhaald1000) {
+            dsLijstHerhaald1000.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstLeeg0() {
-        insertionSort.sort(lijstLeeg0);
+    public void shouldInsertLijstLeeg0(){
+        for (Object element : lijstLeeg0) {
+            dsLijstLeeg0.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstHerhaald1000() {
-        insertionSort.sort(lijstHerhaald1000);
+    public void shouldInsertLijstGesorteerdeStrings(){
+        for (Object element : lijstGesorteerdeStrings) {
+            dsLijstGesorteerdeStrings.insert((String) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstGesorteerdeStrings() {
-        insertionSort.sort(lijstGesorteerdeStrings);
+    public void shouldInsertLijstWillekeurig10000(){
+        for (Object element : lijstWillekeurig10000) {
+            dsLijstWillekeurig10000.insert((Long) element);
+        }
     }
 
-    @SuppressWarnings("unchecked")
     @Benchmark
-    public void performanceTestLijstOplopend10000() {
-        insertionSort.sort(lijstOplopend10000);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstWillekeurig3() {
-        insertionSort.sort(lijstWillekeurig3);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstOngesorteerdeStrings() {
-        insertionSort.sort(lijstOngesorteerdeStrings);
-    }
-
-    @SuppressWarnings("unchecked")
-    @Benchmark
-    public void performanceTestLijstMetStrings() {
-        insertionSort.sort(lijstMetStrings);
+    public void shouldInsertLijstWillekeurig3(){
+        for (Object element : lijstWillekeurig3) {
+            dsLijstWillekeurig3.insert((Long) element);
+        }
     }
 }

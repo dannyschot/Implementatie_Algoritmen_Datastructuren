@@ -12,9 +12,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.Instant;
-
 
 public class DynamicArrayTest {
     JSONObject jsonObject;
@@ -34,15 +31,11 @@ public class DynamicArrayTest {
     public void shouldInsertDataSetDoubleIntoDynamicArray(){
         DynamicArray<Double> dynamicArrayDouble = new DynamicArray<>();
         JSONArray listWithDouble = (JSONArray) jsonObject.get("lijst_float_8001");
-        Instant startTime;
-        long delta;
 
         int expectedSize = listWithDouble.size();
-        startTime = Instant.now();
-        dynamicArrayDouble.addAll(listWithDouble);
-        delta = Duration.between(startTime, Instant.now()).toMillis();
-        System.out.println("Duration for inserting Double into Dynamic Array: " + delta + "ms");
-
+        for(Object element : listWithDouble) {
+            dynamicArrayDouble.add((Double) element);
+        }
         int actualSize = dynamicArrayDouble.size();
 
         Assert.assertEquals(expectedSize, actualSize);
@@ -53,17 +46,8 @@ public class DynamicArrayTest {
         DynamicArray<Long> dynamicArrayInteger = new DynamicArray<>();
         JSONArray listWithLong = (JSONArray) jsonObject.get("lijst_herhaald_1000");
 
-
-        Instant startTime;
-        long delta;
-
         int expectedSize = listWithLong.size();
-
-        startTime = Instant.now();
         dynamicArrayInteger.addAll(listWithLong);
-        delta = Duration.between(startTime, Instant.now()).toMillis();
-
-        System.out.println("Duration for inserting Long into Dynamic Array: " + delta + "ms");
         int actualSize = dynamicArrayInteger.size();
 
         Assert.assertEquals(expectedSize, actualSize);
@@ -74,16 +58,10 @@ public class DynamicArrayTest {
         // Arrange
         DynamicArray<String> dynamicArrayString = new DynamicArray<>();
         JSONArray listWithStrings = (JSONArray) jsonObject.get("lijst_met_strings");
-        Instant startTime;
-        long delta;
 
         //Act
         int expectedSize = listWithStrings.size();
-
-        startTime = Instant.now();
         dynamicArrayString.addAll(listWithStrings);
-        delta = Duration.between(startTime, Instant.now()).toMillis();
-        System.out.println("Duration for inserting String into Dynamic Array: " + delta + "ms");
         int actualSize = dynamicArrayString.size();
 
         //Assert
