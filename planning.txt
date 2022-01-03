@@ -1,68 +1,77 @@
-WK52:
+WK1:
 
 Maandagochtend:		BP Impl
 	middag: 	BP Impl
 
-Dinsdagochtend:		BP Impl
-	middag:		Vrij
-
-Woensdagochtend:	Vrij			
-	middag:		Vrij
-
-Donderdagochtend:	OP
-	middag:		Vrij
-
-Vrijdagochtend:		OP
-	middag:		OP
-
-Zaterdagochtend:	Vrij
-	middag:		Vrij
-
-Zondagochtend:		Vrij
-	middag:		OP
-
-WK1:
-
-Maandagochtend:		Vrij
-	middag: 	Vrij
-
-Dinsdagochtend:		BP Impl
+Dinsdagochtend:		--	
 	middag:		BP Impl
 
-Woensdagochtend:	OP
-	middag:		OP
+Woensdagochtend:	BP Impl			
+	middag:		BP Impl
 
-Donderdagochtend:	Theorie
-	middag:		Theorie
+Donderdagochtend:	--
+	middag:		--
 
-Vrijdagochtend:		Vrij
-	middag:		Theorie
+Vrijdagochtend:		BP Impl
+	middag:		--
 
 Zaterdagochtend:	Theorie
 	middag:		Theorie
 
-Zondagochtend:		Vrij
-	middag:		Vrij
+Zondagochtend:		
+	middag:		DEADLINE BP IMPL (GROTE LIJNEN ALLES AF)
 
 WK2:
 
-Maandagochtend:		Vrij
-	middag: 	Vrij
+Maandagochtend:		OP
+	middag: 	OP
+	avond:		OP
 
-Dinsdagochtend:		BP Impl
-	middag:		BP Impl
+Woensdagochtend:	
+	middag:	
+	avond:		OP
 
-Woensdagochtend:	OP
-	middag:		OP
+Donderdagochtend:	
+	middag:		
+	avond:
 
-Donderdagochtend:	Theorie
-	middag:		Theorie
+Vrijdagochtend:		
+	middag:		
+	avond:
 
-Vrijdagochtend:		Vrij
-	middag:		Theorie
+Zaterdagochtend:	THEORIE
+	middag:		THEORIE
+	
+Zondagochtend:		
+	middag:		
 
-Zaterdagochtend:	Theorie
-	middag:		Theorie
+WK3:
 
-Zondagochtend:		Vrij
-	middag:		Vrij
+Maandagochtend:		THEORIE
+	middag: 	THEORIE
+	avond:		THEORIE
+
+
+
+Woensdagochtend:	
+	middag:		
+	avond:		THEORIE
+
+Donderdagochtend:	
+	middag:		
+	avond:		TOETS
+
+Vrijdagochtend:		
+	middag:		
+	avond:		OP/BP
+
+Zaterdagochtend:	OP/BP
+	middag:		OP/BP
+	
+Zondagochtend:		DEADLINE OP
+	middag:		DEADLINE BP
+
+WK4:
+
+Maandagochtend:		Bestuderen BP IMPL
+	middag:		Bestuderen BP IMPL

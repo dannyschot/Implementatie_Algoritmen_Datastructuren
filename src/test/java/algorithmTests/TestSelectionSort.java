@@ -13,17 +13,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 
-public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke gevallen
+public class TestSelectionSort {
     SelectionSort selectionSort;
     JSONObject jsonObject;
     JSONParser parser;
-    Instant startTime;
-    Instant endTime;
-    long delta;
 
     @Before
     public void setup() throws IOException, ParseException, InterruptedException {
@@ -35,7 +30,7 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
 
     @SuppressWarnings("unchecked")
     @Test
-    public void selectionSortShouldSortList() { // TODO:: Cast verwijderen
+    public void selectionSortShouldSortList() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
@@ -49,19 +44,6 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
-    @Test
-    public void selectionSortShouldThrowExceptionWhenNullInData() { // TODO:: NullPointer asserten
-        //Arrange
-        JSONArray unsorted1 = (JSONArray) jsonObject.get("eigen_lijst");
-        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
-        Exception exception = new NullPointerException();
-
-        //Act
-//        selectionSort.sortWithSortingLib(unsorted1);
-//        selectionSort.sort(unsorted2);
-
-//        Assert.assertTrue();
-    }
 
     @SuppressWarnings("unchecked")
     @Test
@@ -218,6 +200,38 @@ public class TestSelectionSort { // TODO:: Testen toevoegen voor uitzonderlijke 
         //Act
         selectionSort.sortWithSortingLib(unsorted1);
         selectionSort.sort();
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void selectionSortShouldSortLijstWillekeurig3() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+        selectionSort = new SelectionSort<>(unsorted2);
+
+        //Act
+        selectionSort.sortWithSortingLib(unsorted1);
+        selectionSort.sort();
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void selectionSortShouldSortLijstWillekeurig3Descending() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+        selectionSort = new SelectionSort<>(unsorted2);
+
+        //Act
+        selectionSort.sortWithSortingLibDescending(unsorted1);
+        selectionSort.sortDescending();
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());

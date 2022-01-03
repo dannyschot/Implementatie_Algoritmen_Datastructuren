@@ -64,8 +64,7 @@ public class PriorityQueueTest {
         for (Object element : listWithDouble) {
             doubleStack.enqueue((Double) element);
         }
-        long duration = Duration.between(startTime, Instant.now()).toMillis();
-        System.out.println("lijst_float_8001 insertion takes: " +duration + " ms");
+
 
         int expected = doubleStack.size();
 

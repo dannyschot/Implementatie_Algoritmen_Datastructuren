@@ -239,6 +239,63 @@ public class TestTimSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void timSortShouldSortLijstWillekeurig3() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        Long[] unsorted2 = new Long[unsorted1.size()];
+
+        for (int i = 0; i < unsorted1.size(); i++) {
+            unsorted2[i] = (Long) unsorted1.get(i);
+        }
+
+        //Act
+        timSort.sortWithSortingLib(unsorted1);
+        timSort.timSort(unsorted2, unsorted2.length);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void timSortShouldSortLijstWillekeurig4() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_4");
+        Long[] unsorted2 = new Long[unsorted1.size()];
+
+        for (int i = 0; i < unsorted1.size(); i++) {
+            unsorted2[i] = (Long) unsorted1.get(i);
+        }
+
+        //Act
+        timSort.sortWithSortingLib(unsorted1);
+        timSort.timSort(unsorted2, unsorted2.length);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void timSortShouldSortLijstWillekeurig5() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_5");
+        Long[] unsorted2 = new Long[unsorted1.size()];
+
+        for (int i = 0; i < unsorted1.size(); i++) {
+            unsorted2[i] = (Long) unsorted1.get(i);
+        }
+
+        //Act
+        timSort.sortWithSortingLib(unsorted1);
+        timSort.timSort(unsorted2, unsorted2.length);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
+    }
+
     @AfterClass
     public static void endMessage() {
         System.out.println("\n");

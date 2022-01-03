@@ -34,7 +34,7 @@ public class DynamicArrayTest {
 
         int expectedSize = listWithDouble.size();
         for(Object element : listWithDouble) {
-            dynamicArrayDouble.add((Double) element);
+            dynamicArrayDouble.addElement((Double) element);
         }
         int actualSize = dynamicArrayDouble.size();
 
@@ -47,7 +47,9 @@ public class DynamicArrayTest {
         JSONArray listWithLong = (JSONArray) jsonObject.get("lijst_herhaald_1000");
 
         int expectedSize = listWithLong.size();
-        dynamicArrayInteger.addAll(listWithLong);
+        for(Object element : listWithLong) {
+            dynamicArrayInteger.addElement((Long) element);
+        }
         int actualSize = dynamicArrayInteger.size();
 
         Assert.assertEquals(expectedSize, actualSize);
@@ -61,7 +63,9 @@ public class DynamicArrayTest {
 
         //Act
         int expectedSize = listWithStrings.size();
-        dynamicArrayString.addAll(listWithStrings);
+        for(Object element : listWithStrings) {
+            dynamicArrayString.addElement((String) element);
+        }
         int actualSize = dynamicArrayString.size();
 
         //Assert
@@ -69,9 +73,9 @@ public class DynamicArrayTest {
     }
 
     @Test
-    public void shouldAddToListAfterLastElement() {
-        integerArray.add(10);
-        integerArray.add(20);
+    public void shouldaddElementToListAfterLastElement() {
+        integerArray.addElement(10);
+        integerArray.addElement(20);
 
         int expectedValue = 20;
         int actualValue = integerArray.get(1);
@@ -80,24 +84,28 @@ public class DynamicArrayTest {
     }
 
     @Test
-    public void shouldAddAtSpecificIndex() {
-        integerArray.add(20);
-        integerArray.add(30);
-        integerArray.add(40);
-        integerArray.add(1, 5);
+    public void shouldaddElementAtSpecificIndex() {
+        integerArray.addElement(20);
+        integerArray.addElement(30);
+        integerArray.addElement(40);
+        integerArray.addElement(40);
+        integerArray.addElement(1, 5);
 
         int expected = 30;
         int actual = integerArray.get(2);
 
-        Assert.assertEquals(expected, actual);
+        int expectedValueAtIndex1 = 5;
+        int actualValueAtIndex1 = integerArray.get(1);
 
+        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(expectedValueAtIndex1, actualValueAtIndex1);
     }
 
     @Test
     public void shouldRetreiveElementAtIndex() {
-        integerArray.add(20);
-        integerArray.add(30);
-        integerArray.add(40);
+        integerArray.addElement(20);
+        integerArray.addElement(30);
+        integerArray.addElement(40);
 
         int expected = 40;
         int actual = integerArray.get(2);
@@ -107,10 +115,10 @@ public class DynamicArrayTest {
 
     @Test
     public void shouldDeleteLastElement() {
-        integerArray.add(20);
-        integerArray.add(30);
-        integerArray.add(50);
-        integerArray.add(40);
+        integerArray.addElement(20);
+        integerArray.addElement(30);
+        integerArray.addElement(50);
+        integerArray.addElement(40);
 
         integerArray.delete();
         int expected = 50;
@@ -120,12 +128,30 @@ public class DynamicArrayTest {
     }
 
     @Test
-    public void shouldReturnCorrectSizeWhenAdding() {
-        integerArray.add(20);
-        integerArray.add(30);
-        integerArray.add(50);
-        integerArray.add(40);
+    public void shouldReturnCorrectSizeWhenaddElementing() {
+        integerArray.addElement(20);
+        integerArray.addElement(30);
+        integerArray.addElement(50);
+        integerArray.addElement(40);
 
+        int expected = 4;
+        int actual = integerArray.size();
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldDoubleCapacity() {
+        integerArray.addElement(20);
+        integerArray.addElement(30);
+        integerArray.addElement(40);
+
+
+        int expected = 4;
+        int actual = integerArray.getCapacity();
+
+        Assert.assertEquals(expected, actual);
 
     }
 }

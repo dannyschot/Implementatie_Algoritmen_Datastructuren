@@ -1,10 +1,7 @@
 package jmh;
 
 import com.google.gson.Gson;
-import datastructures.Deque;
 import datastructures.HashTableCris;
-import datastructures.IDequeue;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;

@@ -221,7 +221,20 @@ public class TestInsertionSort {
         insertionSort.sort(unsorted1);
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void insertionSortShouldSortLijstWillekeurig3() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
 
+        //Act
+        insertionSort.sortWithSortingLibDescending(unsorted1);
+        insertionSort.sortDescending(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
 
     @AfterClass
     public static void endMessage() {

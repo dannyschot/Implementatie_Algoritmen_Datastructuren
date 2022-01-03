@@ -146,4 +146,36 @@ public class DoublyLinkedListTest<T> {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void shouldNotBeEmpty() {
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
+        iter.insertAfter(50);
+
+        boolean expected = false;
+        boolean actual = doublyLinkedList.isEmpty();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldBeEmpty() {
+        DoublyLinkedList<Integer> doublyLinkedList = new DoublyLinkedList<>();
+        ListIterator<Integer> iter = doublyLinkedList.getIterator();
+        iter.insertBefore(10);
+        iter.insertBefore(20);
+        iter.insertAfter(50);
+
+        for (int i = 0; i < 3; i++) {
+            iter.deleteCurrent();
+        }
+
+        boolean expected = true;
+        boolean actual = doublyLinkedList.isEmpty();
+
+        Assert.assertEquals(expected, actual);
+    }
+
 }

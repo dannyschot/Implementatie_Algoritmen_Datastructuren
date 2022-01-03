@@ -6,20 +6,23 @@ import java.util.List;
 
 public class RadixSort<T extends Comparable<T>> {
 
+    @SuppressWarnings("unchecked")
     public void sort(Long[] data) {
         final int RADIX = 10;
-        List<Long>[] bucket = new ArrayList[RADIX];
+        List<Long>[] bucket = new ArrayList[RADIX]; // Declaratie en instantiatie van Bucket[]
 
         for (int i = 0; i < bucket.length; i++) {
-            bucket[i] = new ArrayList<Long>();
+            bucket[i] = new ArrayList<>(); // Bucket wordt gevuld met subarrays
         }
 
+        // Sorteren begint
         boolean maxLength = false;
-        int tmp = -1;
+        int tmp;
         int placement = 1;
 
         while (!maxLength) {
             maxLength = true;
+            // Split input tussen lijsten
             for (Long i : data) {
                 tmp = (int) (i / placement);
                 bucket[tmp % RADIX].add(i);
@@ -27,6 +30,7 @@ public class RadixSort<T extends Comparable<T>> {
                     maxLength = false;
                 }
             }
+
             int a = 0;
             for (int b = 0; b < RADIX; b++) {
                 for (Long i : bucket[b]) {

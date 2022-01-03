@@ -1,7 +1,7 @@
 package datastructureTests;
 
 import datastructures.Deque;
-import datastructures.IDequeue;
+import datastructures.IDeque;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,10 +16,10 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 
-public class DequeueTest {
+public class DequeTest {
     JSONObject jsonObject;
     JSONParser parser;
-    IDequeue<Integer> testDequeue;
+    IDeque<Integer> testDequeue;
     Instant startTime;
 
     @Before

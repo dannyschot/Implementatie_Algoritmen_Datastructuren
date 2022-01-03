@@ -34,7 +34,7 @@ public class TestQuickSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void quickSortShouldSortList() { // TODO:: Cast verwijderen
+    public void quickSortShouldSortList() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
@@ -47,19 +47,6 @@ public class TestQuickSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
-    @Test
-    public void quickSortShouldThrowExceptionWhenNullInData() { // TODO:: NullPointer asserten
-        //Arrange
-        JSONArray unsorted1 = (JSONArray) jsonObject.get("eigen_lijst");
-        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
-        Exception exception = new NullPointerException();
-
-        //Act
-//        quickSort.sortWithSortingLib(unsorted1);
-//        quickSort.sort(unsorted2);
-
-//        Assert.assertTrue();
-    }
 
     @SuppressWarnings("unchecked")
     @Test
@@ -206,6 +193,36 @@ public class TestQuickSort {
         //Act
         quickSort.sortWithSortingLib(unsorted1);
         quickSort.sort(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void quickSortShouldSortLijstWillekeurig3() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        //Act
+        quickSort.sortWithSortingLib(unsorted1);
+        quickSort.sortDescending(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void quickSortShouldSortLijstWillekeurig3Descending() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        //Act
+        quickSort.sortWithSortingLibDescending(unsorted1);
+        quickSort.sortDescending(unsorted2);
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());

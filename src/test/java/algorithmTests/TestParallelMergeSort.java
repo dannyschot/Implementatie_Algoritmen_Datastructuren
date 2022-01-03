@@ -46,20 +46,6 @@ public class TestParallelMergeSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
-    @Test
-    public void parallelMergeSortShouldThrowExceptionWhenNullInData() { // TODO:: NullPointer asserten
-        //Arrange
-        JSONArray unsorted1 = (JSONArray) jsonObject.get("eigen_lijst");
-        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
-        Exception exception = new NullPointerException();
-
-        //Act
-//        parallelMergeSort.sortWithSortingLib(unsorted1);
-//        parallelMergeSort.sort(unsorted2);
-
-//        Assert.assertTrue();
-    }
-
     @SuppressWarnings("unchecked")
     @Test
     public void parallelMergeSortShouldSortLijstAflopend2() {
@@ -200,6 +186,21 @@ public class TestParallelMergeSort {
     public void parallelMergeSortShouldSortLijstWillekeurig10000() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        //Act
+        parallelMergeSort.sortWithSortingLib(unsorted1);
+        parallelMergeSort.sort(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void parallelMergeSortShouldSortLijstWillekeurig3() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
         ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
 
         //Act
