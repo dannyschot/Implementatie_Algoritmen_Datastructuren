@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class RadixSort<T extends Comparable<T>> {
-
     @SuppressWarnings("unchecked")
     public void sort(Long[] data) {
         final int RADIX = 10;

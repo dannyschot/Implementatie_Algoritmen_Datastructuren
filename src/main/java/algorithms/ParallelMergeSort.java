@@ -23,8 +23,23 @@ public class ParallelMergeSort<T extends Comparable<T>> {
         }
     }
 
+    public void sortDescending(List<T> array) {
+        try {
+            SortTask<T> mainTask = new SortTask<T>(array);
+            mainTask.setDescending(true);
+            ForkJoinPool pool = new ForkJoinPool();
+            pool.invoke(mainTask);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
     public void sortWithSortingLib(ArrayList<T> array) {
         Collections.sort(array);
+    }
+
+    public void sortWithSortingLibDescending(ArrayList<T> array) {
+        array.sort(Collections.reverseOrder());
     }
 
 }

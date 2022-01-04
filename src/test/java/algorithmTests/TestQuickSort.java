@@ -207,7 +207,7 @@ public class TestQuickSort {
 
         //Act
         quickSort.sortWithSortingLib(unsorted1);
-        quickSort.sortDescending(unsorted2);
+        quickSort.sort(unsorted2);
 
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());

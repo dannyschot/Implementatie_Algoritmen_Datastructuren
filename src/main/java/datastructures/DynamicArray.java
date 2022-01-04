@@ -50,13 +50,23 @@ public class DynamicArray<E> extends AbstractList<E> {
      * gekopieerd vanaf de opgegeven index. Vervolgens wordt op de vrije positie het element opgeslagen.
      * @param element het data element welke opgeslagen dient te worden
      */
+    @SuppressWarnings("unchecked")
     public void addElement(int index, E element) {
-        try {
-            if (current - index >= 0) {
-                System.arraycopy(array, index, array, index + 1, current - index);
+        if (current == capacity) {
+            E[] temp = (E[]) new Object[2 * capacity];
+
+            System.arraycopy(array, 0, temp, 0, index);
+            System.arraycopy(array, index , temp, index + 1, array.length - index);
+            capacity *= 2;
+            array = temp;
+        } else {
+            try {
+                if (current - index >= 0) {
+                    System.arraycopy(array, index, array, index + 1, current - index);
+                }
+            }catch (IndexOutOfBoundsException e) {
+             System.out.println("U heeft een index meegegeven die buiten de capaciteit van de array ligt");
             }
-        } catch (IndexOutOfBoundsException e) {
-            System.out.println("U heeft een index meegegeven die buiten de capaciteit van de array ligt");
         }
         array[index] = element;
         current++;
@@ -107,7 +117,7 @@ public class DynamicArray<E> extends AbstractList<E> {
 
     /**
      * Controleert of de rij tot een kwart gevuld is. Zo ja? Dan dient deze te krimpen.
-     * @return
+     * @return true als de rij tot een kwart gevuld is
      */
     private boolean needsToBeShrunken() {
         return current <= capacity * 0.25;

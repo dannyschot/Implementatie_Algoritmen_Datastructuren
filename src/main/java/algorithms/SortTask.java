@@ -7,10 +7,15 @@ import java.util.concurrent.RecursiveAction;
 public class SortTask<T extends Comparable<T>> extends RecursiveAction {
     private final List<T> array;
     private final MergeSort<T> mergeSort;
+    boolean descending;
 
     public SortTask(List<T> array) {
         mergeSort = new MergeSort<>();
         this.array = array;
+    }
+
+    public void setDescending(boolean descending) {
+        this.descending = descending;
     }
 
     @Override
@@ -27,9 +32,18 @@ public class SortTask<T extends Comparable<T>> extends RecursiveAction {
             SortTask<T> firstHalfTask = new SortTask<>(firstHalf); // SortTask instantie met de eerste helft
             SortTask<T> secondHalfTask = new SortTask<>(secondHalf); // SortTask instantie met de tweede helft
 
+            if (descending) {
+                firstHalfTask.setDescending(true);
+                secondHalfTask.setDescending(true);
+            }
+
             invokeAll(firstHalfTask, secondHalfTask); // Door de twee instanties mee te geven wordt de compute methode aangeroepen van beide instanties.
 
-            mergeSort.merge(firstHalf, secondHalf, array); // Mergen van de eerste helft, met de tweede helft, in een nieuwe array.
+            if (descending) {
+                mergeSort.mergeDescending(firstHalf, secondHalf, array);
+            } else {
+                mergeSort.merge(firstHalf, secondHalf, array); // Mergen van de eerste helft, met de tweede helft, in een nieuwe array.
+            }
         }
     }
 

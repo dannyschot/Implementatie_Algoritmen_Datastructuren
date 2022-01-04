@@ -88,7 +88,6 @@ public class DynamicArrayTest {
         integerArray.addElement(20);
         integerArray.addElement(30);
         integerArray.addElement(40);
-        integerArray.addElement(40);
         integerArray.addElement(1, 5);
 
         int expected = 30;

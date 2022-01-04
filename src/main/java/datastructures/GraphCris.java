@@ -31,7 +31,7 @@ public class GraphCris<T> {
     }
 
     public void displayVertex(int v) {
-        bfsResult.add(vertexList[v].label);
+        bfsResult.addElement(vertexList[v].label);
         System.out.println(vertexList[v].label);
     }
 

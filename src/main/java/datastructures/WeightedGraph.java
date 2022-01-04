@@ -31,11 +31,7 @@ public class WeightedGraph<T> {
         adjMat[(int) start][(int) end] = weight;
     }
 
-    public void addEdge(int start, int end) {
-        adjMat[start][end] = 1;
-    }
-
-    public void path() {
+    public void dijkstrasShortestPath() {
         int startTree = 0;
         vertexList[startTree].isInTree = true;
         nTree = 1;

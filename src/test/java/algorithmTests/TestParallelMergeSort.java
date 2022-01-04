@@ -211,6 +211,21 @@ public class TestParallelMergeSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void parallelMergeSortShouldSortLijstWillekeurig3Descending() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        //Act
+        parallelMergeSort.sortWithSortingLibDescending(unsorted1);
+        parallelMergeSort.sortDescending(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
     @AfterClass
     public static void endMessage() {
         System.out.println("\n");
