@@ -249,6 +249,7 @@ public class GraphTest {
         graph.depthFirstSearch();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void shouldInsertVerbindingsLijstGewogenIntoUnweightedGraph() throws ParseException {
         JSONArray jsonArray = (JSONArray) jsonObject.get("verbindingslijst_gewogen");
@@ -259,19 +260,13 @@ public class GraphTest {
         graph.addVertex('C');
         graph.addVertex('D');
 
-        for (int i = 0; i < jsonArray.size(); i++) {
-            array.add((ArrayList<ArrayList<Long>>) jsonArray.get(i));
+        for (Object o : jsonArray) {
+            array.add((ArrayList<ArrayList<Long>>) o);
         }
-
-        System.out.println(array);
-
 
         startTime = Instant.now();
         for (int j = 0; j < array.size(); j++) {
             for (int i = 0; i < array.get(j).size(); i++) {
-                System.out.println("SUBARRAY of SIZE: " + array.get(j).size());
-                System.out.println("FIRST ELEMENT: " + array.get(j).get(i).get(0));
-                System.out.println("SECOND ELEMENT: " + array.get(j).get(i).get(1));
                 graph.addEdge(j, array.get(j).get(i).get(0), array.get(j).get(i).get(1));
             }
         }
