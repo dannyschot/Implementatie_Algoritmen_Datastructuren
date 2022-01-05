@@ -136,7 +136,7 @@ public class AVLSearchTreeTest {
         boolean expected = false;
         boolean actual = avlTree.getNodeValue(300);
 
-        Assert.assertEquals(expected, actual);
+        Assert.assertEquals(false, actual);
     }
 
     @Test

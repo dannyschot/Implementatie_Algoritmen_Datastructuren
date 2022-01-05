@@ -170,7 +170,7 @@ public class AVLTree<T extends Comparable<T>> {
     /**
      * Logica voor het verwijderen van een node
      * @param root root dient mee te worden gegeven om de subtree te bepalen
-     * @param key Gegeven node die dient te worden verwijderd
+     * @param data Gegeven node die dient te worden verwijderd
      * @return Verwijderde node
      */
     private Node<T> deleteNode(Node<T> root, T data) {
@@ -208,7 +208,9 @@ public class AVLTree<T extends Comparable<T>> {
         }
 
         // Voorkomen nullPointerException
-        assert root != null;
+        if (root == null) {
+            return null;
+        }
 
         // Updaten van de hoogte van de huidige node (subtree)
         root.height = max(height(root.left), height(root.right)) + 1;
