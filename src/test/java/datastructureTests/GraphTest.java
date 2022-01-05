@@ -17,6 +17,10 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class GraphTest {
     JSONObject jsonObject;
@@ -117,13 +121,12 @@ public class GraphTest {
         JSONArray jsonArray = (JSONArray) jsonObject.get("lijnlijst_gewogen");
         long[][] array = new long[jsonArray.size()][3];
         WeightedGraph<String> graph = new WeightedGraph<>(jsonArray.size());
-        graph.addVertex('A');
-        graph.addVertex('B');
-        graph.addVertex('C');
-        graph.addVertex('D');
-        graph.addVertex('E');
-        graph.addVertex('F');
-        graph.addVertex('G');
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
+
 
         for (int i=0; i < jsonArray.size(); i++) {
             JSONArray jsonArray2 = (JSONArray) jsonArray.get(i);
@@ -138,15 +141,6 @@ public class GraphTest {
         }
         long duration = Duration.between(startTime, Instant.now()).toMillis();
         System.out.println("lijnlijst_gewogen takes: " + duration + " ms");
-
-        Vertex vertexList[] = new Vertex[jsonArray.size()];
-        vertexList[0] = new Vertex('A');
-        vertexList[1] = new Vertex('B');
-        vertexList[2] = new Vertex('C');
-        vertexList[3] = new Vertex('E');
-        vertexList[4] = new Vertex('D');
-        vertexList[5] = new Vertex('F');
-        vertexList[6] = new Vertex('G');
 
     }
     @Test
@@ -191,11 +185,11 @@ public class GraphTest {
         JSONArray jsonArray = (JSONArray) jsonObject.get("verbindingsmatrix_gewogen");
         long[][] array = new long[jsonArray.size()][5];
         WeightedGraph<String> graph = new WeightedGraph<>(jsonArray.size());
-        graph.addVertex('A');
-        graph.addVertex('B');
-        graph.addVertex('C');
-        graph.addVertex('D');
-        graph.addVertex('E');
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
 
 
         for (int i=0; i < jsonArray.size(); i++) {
@@ -255,10 +249,10 @@ public class GraphTest {
         JSONArray jsonArray = (JSONArray) jsonObject.get("verbindingslijst_gewogen");
         ArrayList<ArrayList<ArrayList<Long>>> array = new ArrayList<>();
         WeightedGraph<Long> graph = new WeightedGraph<>(jsonArray.size());
-        graph.addVertex('A');
-        graph.addVertex('B');
-        graph.addVertex('C');
-        graph.addVertex('D');
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
 
         for (Object o : jsonArray) {
             array.add((ArrayList<ArrayList<Long>>) o);
@@ -274,7 +268,82 @@ public class GraphTest {
         System.out.println("verbindingslijst takes: " + duration + " ms");
     }
 
+    @Test
+    public void shouldFindShortestPaths() {
+        JSONArray jsonArray = (JSONArray) jsonObject.get("lijnlijst_gewogen");
+        long[][] array = new long[jsonArray.size()][3];
+        WeightedGraph<String> graph = new WeightedGraph<>(jsonArray.size());
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
+
+        for (int i=0; i < jsonArray.size(); i++) {
+            JSONArray jsonArray2 = (JSONArray) jsonArray.get(i);
+            array[i][0] = (long) jsonArray2.get(0);
+            array[i][1] = (long) jsonArray2.get(1);
+            array[i][2] = (long) jsonArray2.get(2);
+        }
+
+        for (long[] intArray : array) {
+            graph.addEdge(intArray[0], intArray[1], (int) intArray[2]);
+        }
+
+        graph.dijkstrasShortestPath();
+
+        Map<String, Long> expectedResultsDijkstrasAlgorithm = Stream.of(new Object[][] {
+                { "B", (long) 99},
+                { "C", (long) 50},
+                {"D", (long) 149},
+                {"E", (long) 149}
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (Long) data[1]));
+
+        Assert.assertEquals(expectedResultsDijkstrasAlgorithm, graph.getDijkstraResults());
+    }
+
+    @Test
+    public void shouldFindShortestPathsWithConstantWeights() {
+        JSONArray jsonArray = (JSONArray) jsonObject.get("lijnlijst");
+        long[][] array = new long[jsonArray.size()][2];
+        WeightedGraph<String> graph = new WeightedGraph<>(jsonArray.size());
+        graph.addVertex("A");
+        graph.addVertex("B");
+        graph.addVertex("C");
+        graph.addVertex("D");
+        graph.addVertex("E");
+        graph.addVertex("F");
+        graph.addVertex("G");
+
+
+        for (int i=0; i < jsonArray.size(); i++) {
+            JSONArray jsonArray2 = (JSONArray) jsonArray.get(i);
+            array[i][0] = (long) jsonArray2.get(0);
+            array[i][1] = (long) jsonArray2.get(1);
+        }
+
+        for (long[] intArray : array) {
+            graph.addEdge(intArray[0], intArray[1], 1);
+        }
+
+        graph.dijkstrasShortestPath();
+
+        Map<String, Long> expectedResultsDijkstrasAlgorithm = Stream.of(new Object[][] {
+                { "B", (long) 1},
+                { "C", (long) 1},
+                {"D", (long) 2},
+                {"E", (long) 2},
+                {"F", (long) 3},
+                {"G", (long) 4}
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (Long) data[1]));
+
+        Assert.assertEquals(expectedResultsDijkstrasAlgorithm, graph.getDijkstraResults());
+    }
+
+
     private boolean isEdge(long bit) {
         return bit > 0;
     }
+
+
 }

@@ -1,5 +1,8 @@
 package datastructures;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class WeightedGraph<T> {
     private final int INFINITY = 1_000_000;
     private Vertex<T> vertexList[];
@@ -9,8 +12,10 @@ public class WeightedGraph<T> {
     private DistanceParent shortestPath[];
     private int currentVertex;
     private long startToCurrent;
+    private Map<T, Long> resultsDijkstra;
 
     public WeightedGraph(int size) {
+        resultsDijkstra = new HashMap<T, Long>();
         vertexList = new Vertex[size];
         adjMat = new long[size][size];
         nVerts = 0;
@@ -23,7 +28,7 @@ public class WeightedGraph<T> {
         shortestPath = new DistanceParent[size];
     }
 
-    public void addVertex(char label) {
+    public void addVertex(String label) {
         vertexList[nVerts++] = new Vertex(label);
     }
 
@@ -108,11 +113,16 @@ public class WeightedGraph<T> {
                 System.out.println("infinity");
             } else {
                 System.out.println(shortestPath[j].distance);
+                resultsDijkstra.put(vertexList[j].label, shortestPath[j].distance);
             }
-            char parent = (char) vertexList[shortestPath[j].parentVert].label;
+            String parent = (String) vertexList[shortestPath[j].parentVert].label;
             System.out.println("(" + parent + ") ");
         }
         System.out.println("");
+    }
+
+    public Map<T, Long> getDijkstraResults() {
+        return resultsDijkstra;
     }
 
 }

@@ -1,35 +1,35 @@
 WK1:
 
-Maandagochtend:		BP Impl
-	middag: 	BP Impl
+Maandagochtend:		BP Impl 		DONE
+	middag: 	BP Impl 		DONE
 
 Dinsdagochtend:		--	
-	middag:		BP Impl
+	middag:		BP Impl			DONE
 
-Woensdagochtend:	BP Impl			
-	middag:		BP Impl
+Woensdagochtend:	BP Impl			DONE		
+	middag:		BP Impl			DONE
 
-Donderdagochtend:	--
+Donderdagochtend:	--			BP Impl
 	middag:		--
 
-Vrijdagochtend:		BP Impl
+Vrijdagochtend:		Theorie
+	middag:		Theorie (tot 14u)
+
+Zaterdagochtend:	--
 	middag:		--
-
-Zaterdagochtend:	Theorie
-	middag:		Theorie
-
-Zondagochtend:		
-	middag:		DEADLINE BP IMPL (GROTE LIJNEN ALLES AF)
+	
+Zondagochtend:		--		
+	middag:		--
 
 WK2:
 
-Maandagochtend:		OP
+Maandagochtend:		BP Impl
 	middag: 	OP
-	avond:		OP
+	avond:		Theorie
 
 Woensdagochtend:	
 	middag:	
-	avond:		OP
+	avond:		Theorie
 
 Donderdagochtend:	
 	middag:		
@@ -60,6 +60,7 @@ Woensdagochtend:
 Donderdagochtend:	
 	middag:		
 	avond:		TOETS
+
 
 Vrijdagochtend:		
 	middag:		
