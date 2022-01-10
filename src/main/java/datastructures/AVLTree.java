@@ -7,6 +7,7 @@ package datastructures;
 public class AVLTree<T extends Comparable<T>> {
     Node<T> root = null;
     public int nNodes = 0;
+    private String errorMessage;
 
     /**
      * Utility functie om de hoogte van de boom op te vragen
@@ -100,8 +101,8 @@ public class AVLTree<T extends Comparable<T>> {
      * @param key data element welke opgeslagen wordt in de node
      */
     public void insert(T key) {
-        nNodes++; // Aantal nodes wordt opgehoogd
         root = insert(root, key);
+        nNodes++; // Aantal nodes wordt opgehoogd
     }
 
     private Node<T> insert(Node<T> node, T key) {
@@ -109,10 +110,12 @@ public class AVLTree<T extends Comparable<T>> {
         if (node == null)
             return (newNode(key)); // Basisgeval van recursie
 
-        if (key.compareTo(node.data) == 0) { // Als de waarde van de nodes hetzelfde zijn. Verhoog count en return
-            (node.count)++;
-            return node;
-        }
+        try {
+            if (key.compareTo(node.data) == 0) { // Als de waarde van de nodes hetzelfde zijn. Verhoog count en return
+                (node.count)++;
+                return node;
+            }
+
         if (key.compareTo(node.data) < 0) // Als de waarde kleiner is, traverseer recursief de boom
             node.left = insert(node.left, key); // Gaat door tot basisgeval is bereikt, slaat dan vervolgens de node op als linkerkind
         else
@@ -141,6 +144,9 @@ public class AVLTree<T extends Comparable<T>> {
         if (balance < -1 && key.compareTo(node.right.data) < 0) {
             node.right = rightRotate(node.right);
             return leftRotate(node);
+        }
+        } catch(Exception e) {
+            this.errorMessage = "Null data cannot be compared against non-null elements";
         }
         return node;
     }
@@ -273,5 +279,9 @@ public class AVLTree<T extends Comparable<T>> {
 
     private Node<T> getRoot() {
         return root;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

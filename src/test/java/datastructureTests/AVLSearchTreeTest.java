@@ -87,17 +87,130 @@ public class AVLSearchTreeTest {
 
     @Test
     public void shouldInsertLijstWillekeurig4() {
-        AVLTree<Double> avlSearchTreeString = new AVLTree<>();
+        AVLTree<Double> avlSearchTree = new AVLTree<>();
         JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_willekeurig_4");
 
         int sizeOfJsonArray = listWithFloat.size();
         for (Object element : listWithFloat) {
-            avlSearchTreeString.insert((Double) element);
+            avlSearchTree.insert((Double) element);
         }
 
-        int sizeOfAVLTree = avlSearchTreeString.nNodes;
+        int sizeOfAVLTree = avlSearchTree.nNodes;
 
         Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertEigenLijst() {
+        AVLTree<Long> avlSearchTree = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("eigen_lijst");
+
+        for (Object element : listWithFloat) {
+            avlSearchTree.insert((Long) element);
+        }
+
+        String expected = "Null data cannot be compared against non-null elements";
+        String actual = avlSearchTree.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstAflopend2() {
+        AVLTree<Long> avlSearchTreeLong = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_aflopend_2");
+
+        int sizeOfJsonArray = listWithFloat.size();
+        for (Object element : listWithFloat) {
+            avlSearchTreeLong.insert((Long) element);
+        }
+        int sizeOfAVLTree = avlSearchTreeLong.nNodes;
+
+        Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstOplopend2() {
+        AVLTree<Long> avlSearchTreeLong = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_oplopend_2");
+
+        int sizeOfJsonArray = listWithFloat.size();
+        for (Object element : listWithFloat) {
+            avlSearchTreeLong.insert((Long) element);
+        }
+        int sizeOfAVLTree = avlSearchTreeLong.nNodes;
+
+        Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstGesorteerdAflopend3() {
+        AVLTree<Long> avlSearchTreeLong = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
+
+        int sizeOfJsonArray = listWithFloat.size();
+        for (Object element : listWithFloat) {
+            avlSearchTreeLong.insert((Long) element);
+        }
+        int sizeOfAVLTree = avlSearchTreeLong.nNodes;
+
+        Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstGesorteerdOplopend3() {
+        AVLTree<Long> avlSearchTreeLong = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_gesorteerd_oplopend_3");
+
+        int sizeOfJsonArray = listWithFloat.size();
+        for (Object element : listWithFloat) {
+            avlSearchTreeLong.insert((Long) element);
+        }
+        int sizeOfAVLTree = avlSearchTreeLong.nNodes;
+
+        Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstLeeg0() {
+        AVLTree<Long> avlSearchTreeLong = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_leeg_0");
+
+        int sizeOfJsonArray = listWithFloat.size();
+        for (Object element : listWithFloat) {
+            avlSearchTreeLong.insert((Long) element);
+        }
+        int sizeOfAVLTree = avlSearchTreeLong.nNodes;
+
+        Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstNull1() {
+        AVLTree<Long> avlSearchTreeLong = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_null_1");
+
+        int sizeOfJsonArray = listWithFloat.size();
+        for (Object element : listWithFloat) {
+            avlSearchTreeLong.insert((Long) element);
+        }
+        int sizeOfAVLTree = avlSearchTreeLong.nNodes;
+
+        Assert.assertEquals(sizeOfJsonArray, sizeOfAVLTree);
+    }
+
+    @Test
+    public void shouldInsertDataSetLijstNull3() {
+        AVLTree<Long> avlSearchTree = new AVLTree<>();
+        JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_null_3");
+
+        for (Object element : listWithFloat) {
+            avlSearchTree.insert((Long) element);
+        }
+        String expected = "Null data cannot be compared against non-null elements";
+        String actual = avlSearchTree.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
     }
 
     @Test
