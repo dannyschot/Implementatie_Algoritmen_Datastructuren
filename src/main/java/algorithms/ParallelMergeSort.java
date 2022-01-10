@@ -10,6 +10,8 @@ import java.util.concurrent.ForkJoinPool;
  * @param <T>
  */
 public class ParallelMergeSort<T extends Comparable<T>> {
+    private String errorMessage;
+
     public void sort(List<T> array) {
         try {
             SortTask<T> mainTask = new SortTask<T>(array);
@@ -18,8 +20,15 @@ public class ParallelMergeSort<T extends Comparable<T>> {
              * De mainTask instantie wordt meegegeven aan de pool. De taken zullen verder opgesplitst worden om vervolgens weer te joinen tot een gezamenlijk resultaat.
              */
             pool.invoke(mainTask);
+            if (mainTask.errorMessage.length() > 0) {
+                this.errorMessage = mainTask.errorMessage;
+                System.out.println(mainTask.errorMessage);
+            }
         } catch (Exception e) {
-            System.out.println(e);
+            if (e instanceof NullPointerException) {
+                this.errorMessage = "Dataset contains null values. Cannot sort null values.";
+                System.out.println(this.errorMessage);
+            }
         }
     }
 
@@ -30,7 +39,10 @@ public class ParallelMergeSort<T extends Comparable<T>> {
             ForkJoinPool pool = new ForkJoinPool();
             pool.invoke(mainTask);
         } catch (Exception e) {
-            System.out.println(e);
+            if (e instanceof NullPointerException) {
+                this.errorMessage = "Dataset contains null values. Cannot sort null values.";
+                System.out.println(this.errorMessage);
+            }
         }
     }
 
@@ -42,4 +54,7 @@ public class ParallelMergeSort<T extends Comparable<T>> {
         array.sort(Collections.reverseOrder());
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

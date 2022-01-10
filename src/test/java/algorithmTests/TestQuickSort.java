@@ -215,6 +215,46 @@ public class TestQuickSort {
 
     @SuppressWarnings("unchecked")
     @Test
+    public void quickSortShouldSortWithOnlyOneNull() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_1");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        //Act
+        quickSort.sortWithSortingLibDescending(unsorted1);
+        quickSort.sortDescending(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void quickSortShouldThrowExceptionWhenNullInData3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        quickSort.sort(unsorted2);
+
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = quickSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void quickSortShouldNotSortOnsorteerbaar3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_onsorteerbaar_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        quickSort.sort(unsorted2);
+
+        Assert.assertEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
     public void quickSortShouldSortLijstWillekeurig3Descending() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_3");
@@ -227,6 +267,7 @@ public class TestQuickSort {
         //Assert
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
+
 
     @AfterClass
     public static void endMessage() {

@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 
 public class TestRadixSort {
     RadixSort radixSort;
@@ -31,22 +32,79 @@ public class TestRadixSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void insertionSortShouldSortList() { // TODO:: Cast verwijderen
+    public void insertionSortShouldSortList() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_10000");
-        Long[] unsorted2 = new Long[unsorted1.size()];
-
-        for (int i = 0; i < unsorted1.size(); i++) {
-            unsorted2[i] = (Long) unsorted1.get(i);
-        }
-
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
 
         //Act
         radixSort.sortWithSortingLib(unsorted1);
-        radixSort.sort(unsorted2);
+        radixSort.sortLong(unsorted2);
 
         //Assert
-        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2);
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void radixSortShouldNotSortListWithNulls() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_1");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+
+        radixSort.sortLong(unsorted2);
+
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = radixSort.getErrorMessage();
+
+        //Assert
+        Assert.assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void radixSortShouldNotSortListWithNulls3() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        radixSort.sortLong(unsorted2);
+
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = radixSort.getErrorMessage();
+
+        //Assert
+        Assert.assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void radixSortShouldNotSortLijstOnsorteerbaar() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_onsorteerbaar_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+
+        radixSort.sortLong(unsorted2);
+
+        String expected = "Contains elements which are not of equal type";
+        String actual = radixSort.getErrorMessage();
+
+        //Assert
+        Assert.assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void radixSortShouldLijstFloat8001() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
+        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
+
+        radixSort.sortWithSortingLib(unsorted1);
+        radixSort.sortDouble(unsorted2);
+
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
     @AfterClass

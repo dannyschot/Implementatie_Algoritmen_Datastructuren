@@ -7,6 +7,7 @@ import java.util.List;
 public class SelectionSort<T extends Comparable<T>> {
     private final int nElements;
     private final List<T> unsortedList;
+    private String errorMessage;
 
     public SelectionSort(List<T> data) {
         unsortedList = data;
@@ -25,8 +26,14 @@ public class SelectionSort<T extends Comparable<T>> {
                 }
                 swap(out, min); // Huidige kleinste waarde vanaf out wordt gewisseld met waarde op out
             }
-        } catch (NullPointerException e){
-            System.out.println(e);
+        } catch (Exception e){
+            if (e instanceof NullPointerException) {
+                this.errorMessage = "Dataset contains null values. Cannot sort null values.";
+                System.out.println(this.errorMessage);
+            } else if (e instanceof ClassCastException) {
+                this.errorMessage = "Contains elements which are not of equal type";
+                System.out.println(this.errorMessage);
+            }
         }
     }
 
@@ -64,5 +71,9 @@ public class SelectionSort<T extends Comparable<T>> {
 
     public void sortWithSortingLibDescending(ArrayList<T> array) {
         Collections.sort(array, Collections.reverseOrder());
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

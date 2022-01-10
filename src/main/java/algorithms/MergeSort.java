@@ -4,12 +4,19 @@ import java.util.Collections;
 import java.util.List;
 
 public class MergeSort<T extends Comparable<T>> {
+    private String errorMessage;
+
     public void merge(List<T> firstHalf, List<T> secondHalf, List<T> array) {
         int currentIndexFirst = 0;
         int currentIndexSecond = 0;
         int currentIndexArray = 0;
 
         while(currentIndexFirst < firstHalf.size() && currentIndexSecond < secondHalf.size()) {
+            if (!firstHalf.get(currentIndexFirst).getClass().getSimpleName().equals(secondHalf.get(currentIndexSecond).getClass().getSimpleName())) {
+                this.errorMessage = "Contains elements which are not of equal type";
+                return;
+            }
+            
             /**
              * Als het huidige element van de linkerhelft kleiner is dan het huidige element van de rechterhelft
              */
@@ -70,4 +77,7 @@ public class MergeSort<T extends Comparable<T>> {
         Collections.sort(array);
     }
 
+    public String getErrorMessage() {
+        return errorMessage;
+    }
 }

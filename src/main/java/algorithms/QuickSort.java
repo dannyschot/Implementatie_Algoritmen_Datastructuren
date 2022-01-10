@@ -6,6 +6,7 @@ import java.util.List;
 
 public class QuickSort<T extends Comparable<T>> {
     List<T> unsortedList;
+    private String errorMessage;
 
     /**
      * Bevat telkens de nog ongesorteerde lijst en een aanroep naar de recursieve sorteermethode
@@ -36,8 +37,11 @@ public class QuickSort<T extends Comparable<T>> {
                 recursiveSort(left, partition - 1); // Doe dit recursief voor het linkerdeel van de (sub)lijst
                 recursiveSort(partition + 1, right); // Doe dit recursief voor het rechterdeel van de (sub)lijst
             }
-        } catch (NullPointerException e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            if (e instanceof NullPointerException) {
+                this.errorMessage = "Dataset contains null values. Cannot sort null values.";
+                System.out.println(this.errorMessage);
+            }
         }
     }
 
@@ -51,8 +55,11 @@ public class QuickSort<T extends Comparable<T>> {
                 recursiveSortDescending(left, partition - 1); // Doe dit recursief voor het linkerdeel van de (sub)lijst
                 recursiveSortDescending(partition + 1, right); // Doe dit recursief voor het rechterdeel van de (sub)lijst
             }
-        } catch (NullPointerException e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            if (e instanceof NullPointerException) {
+                this.errorMessage = "Dataset contains null values. Cannot sort null values.";
+                System.out.println(this.errorMessage);
+            }
         }
     }
 
@@ -98,6 +105,8 @@ public class QuickSort<T extends Comparable<T>> {
         if (one == two) return;
 
         T temp = unsortedList.get(one);
+
+
         unsortedList.set(one, unsortedList.get(two));
         unsortedList.set(two, temp);
     }
@@ -110,9 +119,7 @@ public class QuickSort<T extends Comparable<T>> {
         Collections.sort(array, Collections.reverseOrder());
     }
 
-    public void display() {
-        for(T element : unsortedList) {
-            System.out.println(element);
-        }
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

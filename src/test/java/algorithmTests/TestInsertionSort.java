@@ -6,12 +6,12 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.*;
+import org.junit.rules.ExpectedException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
 import java.time.Instant;
 import java.util.ArrayList;
 
@@ -20,10 +20,6 @@ public class TestInsertionSort {
     InsertionSort insertionSort;
     JSONObject jsonObject;
     JSONParser parser;
-    Instant startTime;
-    Instant endTime;
-    long delta;
-
 
     @Before
     public void setup() throws IOException, ParseException, InterruptedException {
@@ -35,7 +31,7 @@ public class TestInsertionSort {
     }
 
     @Test
-    public void insertionSortShouldSortList() { // TODO:: Cast verwijderen
+    public void insertionSortShouldSortList() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
@@ -48,18 +44,54 @@ public class TestInsertionSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
+
     @Test
-    public void insertionSortShouldThrowExceptionWhenNullInData() { // TODO:: NullPointer asserten
-        //Arrange
+    public void insertionSortShouldThrowExceptionWhenNullInData() {
         JSONArray unsorted1 = (JSONArray) jsonObject.get("eigen_lijst");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
-        Exception exception = new NullPointerException();
 
-        //Act
-//        insertionSort.sortWithSortingLib(unsorted1);
-//        insertionSort.sort(unsorted2);
+        insertionSort.sort(unsorted2);
 
-//        Assert.assertTrue();
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = insertionSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void insertionSortShouldSortWithOnlyOneNull() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_1");
+        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
+
+        insertionSort.sortWithSortingLib(unsorted1);
+        insertionSort.sort(unsorted2);
+
+
+        Assert.assertEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @Test
+    public void insertionSortShouldThrowExceptionWhenNullInData3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_3");
+        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
+
+        insertionSort.sort(unsorted2);
+
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = insertionSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void insertionSortShouldNotSortLijstOnsorteerbaar3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_onsorteerbaar_3");
+        ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
+
+        insertionSort.sort(unsorted2);
+        System.out.println(unsorted2);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -71,7 +103,6 @@ public class TestInsertionSort {
 
         //Act
         insertionSort.sortWithSortingLib(unsorted1);
-        startTime = Instant.now();
         insertionSort.sort(unsorted2);
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
 

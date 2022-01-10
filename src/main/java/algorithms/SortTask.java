@@ -8,6 +8,7 @@ public class SortTask<T extends Comparable<T>> extends RecursiveAction {
     private final List<T> array;
     private final MergeSort<T> mergeSort;
     boolean descending;
+    public String errorMessage;
 
     public SortTask(List<T> array) {
         mergeSort = new MergeSort<>();
@@ -44,6 +45,8 @@ public class SortTask<T extends Comparable<T>> extends RecursiveAction {
             } else {
                 mergeSort.merge(firstHalf, secondHalf, array); // Mergen van de eerste helft, met de tweede helft, in een nieuwe array.
             }
+
+            this.errorMessage = mergeSort.getErrorMessage();
         }
     }
 

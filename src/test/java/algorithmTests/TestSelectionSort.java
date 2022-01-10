@@ -237,6 +237,50 @@ public class TestSelectionSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void selectionSortShouldThrowExceptionWhenNullInData2() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_1");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+        selectionSort = new SelectionSort<>(unsorted2);
+
+        selectionSort.sortWithSortingLib(unsorted1);
+        selectionSort.sort();
+
+
+        Assert.assertEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void selectionSortShouldThrowExceptionWhenNullInData3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+        selectionSort = new SelectionSort<>(unsorted2);
+
+        selectionSort.sort();
+
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = selectionSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void selectionSortShouldNotSortLijstOnsorteerbaar3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_onsorteerbaar_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+        selectionSort = new SelectionSort<>(unsorted2);
+
+        selectionSort.sort();
+
+        String expected = "Contains elements which are not of equal type";
+        String actual = selectionSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
     @AfterClass
     public static void endMessage() {
         System.out.println("\n");

@@ -226,6 +226,50 @@ public class TestParallelMergeSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
+    @SuppressWarnings("unchecked")
+    @Test
+    public void parallelMergeSortShouldSortWhenOnlyOneNull() {
+        //Arrange
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_1");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        //Act
+        parallelMergeSort.sortWithSortingLibDescending(unsorted1);
+        parallelMergeSort.sortDescending(unsorted2);
+
+        //Assert
+        Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void parallelMergeSortShouldThrowExceptionWhenNullInData3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        parallelMergeSort.sort(unsorted2);
+
+        String expected = "Dataset contains null values. Cannot sort null values.";
+        String actual = parallelMergeSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @SuppressWarnings("unchecked")
+    @Test
+    public void parallelMergeSortShouldNotSortLijstOnsorteerbaar3() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_onsorteerbaar_3");
+        ArrayList<Long> unsorted2 = (ArrayList<Long>) unsorted1.clone();
+
+        parallelMergeSort.sort(unsorted2);
+
+        String expected = "Contains elements which are not of equal type";
+        String actual = parallelMergeSort.getErrorMessage();
+
+        Assert.assertEquals(expected, actual);
+    }
+
     @AfterClass
     public static void endMessage() {
         System.out.println("\n");

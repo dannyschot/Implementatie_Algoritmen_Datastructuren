@@ -5,10 +5,16 @@ import java.util.Collections;
 import java.util.List;
 
 public class InsertionSort<T extends Comparable<T>> {
+    private String errorMessage;
+
     public void sort(List<T> data) {
         int in, out;
         try {
             for (out = 1; out < data.size(); out++) { // Out is de scheidslijn
+                if (!data.get(out - 1).getClass().getName().equals(data.get(out).getClass().getName())) {
+                    System.out.println("NOT OF EQUAL TYPE");
+                    return;
+                }
                 T temp = data.get(out); // Element dat vergeleken wordt, wordt opgeslagen
                 in = out; // Het begint vanaf het te vergelijken element
                 while (in > 0 && data.get(in - 1).compareTo(temp) >= 0) { // Doorgaan tot een item kleiner is, als element kleiner is dan:
@@ -18,7 +24,10 @@ public class InsertionSort<T extends Comparable<T>> {
                 data.set(in, temp); // Insertie van opgeslagen element
             }
         } catch (Exception e) {
-            System.out.println(e);
+            if (e instanceof NullPointerException) {
+                this.errorMessage = "Dataset contains null values. Cannot sort null values.";
+                System.out.println(this.errorMessage);
+            }
         }
     }
 
@@ -35,7 +44,7 @@ public class InsertionSort<T extends Comparable<T>> {
                 data.set(in, temp); // Insertie van opgeslagen element
             }
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Dataset contains null values. Cannot sort null values.");
         }
     }
 
@@ -55,5 +64,9 @@ public class InsertionSort<T extends Comparable<T>> {
     @SuppressWarnings("unchecked")
     public void sortWithSortingLibDescending(ArrayList array) {
         Collections.sort(array, Collections.reverseOrder());
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
     }
 }

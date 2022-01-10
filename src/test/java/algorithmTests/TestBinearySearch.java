@@ -13,14 +13,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Duration;
-import java.time.Instant;
 import java.util.ArrayList;
 
 public class TestBinearySearch {
-    Instant startTime;
-    Instant endTime;
-    Long delta;;
     JSONParser parser;
     JSONObject jsonObject;
     BinarySearch<String> binarySearchWithStrings;
@@ -32,19 +27,6 @@ public class TestBinearySearch {
         ClassLoader classLoader = getClass().getClassLoader();
         InputStream inputStream = classLoader.getResourceAsStream("datasets/sorting.json");
         jsonObject = (JSONObject) parser.parse(new InputStreamReader(inputStream, StandardCharsets.UTF_8));
-    }
-
-    @Test
-    public void performanceTest() {
-        BinarySearch<Long> binarySearch;
-        JSONArray jsonArray = (JSONArray) jsonObject.get("lijst_oplopend_10000");
-        binarySearch = new BinarySearch<>(jsonArray);
-
-        startTime = Instant.now();
-        int actual = binarySearch.find(8500L);
-        endTime = Instant.now();
-        delta = Duration.between(startTime, endTime).toMillis();
-        System.out.println("The time it takes for binary search to find element " + actual + " in upperhalf is: " + delta + " ms");
     }
 
     @Test
