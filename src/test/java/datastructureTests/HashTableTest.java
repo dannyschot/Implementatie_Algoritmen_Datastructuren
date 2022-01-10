@@ -78,5 +78,4 @@ public class HashTableTest {
 
         Assert.assertEquals(expected, actual);
     }
-
 }

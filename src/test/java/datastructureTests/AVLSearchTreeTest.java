@@ -87,12 +87,12 @@ public class AVLSearchTreeTest {
 
     @Test
     public void shouldInsertLijstWillekeurig4() {
-        AVLTree<Long> avlSearchTreeString = new AVLTree<>();
+        AVLTree<Double> avlSearchTreeString = new AVLTree<>();
         JSONArray listWithFloat = (JSONArray) jsonObject.get("lijst_willekeurig_4");
 
         int sizeOfJsonArray = listWithFloat.size();
         for (Object element : listWithFloat) {
-            avlSearchTreeString.insert((Long) element);
+            avlSearchTreeString.insert((Double) element);
         }
 
         int sizeOfAVLTree = avlSearchTreeString.nNodes;

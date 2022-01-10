@@ -6,15 +6,11 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.*;
-import org.junit.rules.ExpectedException;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.time.Instant;
 import java.util.ArrayList;
-
 
 public class TestInsertionSort {
     InsertionSort insertionSort;
@@ -30,6 +26,7 @@ public class TestInsertionSort {
         insertionSort = new InsertionSort();
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void insertionSortShouldSortList() {
         //Arrange
@@ -44,7 +41,7 @@ public class TestInsertionSort {
         Assert.assertArrayEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
-
+    @SuppressWarnings("unchecked")
     @Test
     public void insertionSortShouldThrowExceptionWhenNullInData() {
         JSONArray unsorted1 = (JSONArray) jsonObject.get("eigen_lijst");
@@ -58,6 +55,7 @@ public class TestInsertionSort {
         Assert.assertEquals(expected, actual);
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void insertionSortShouldSortWithOnlyOneNull() {
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_1");
@@ -70,6 +68,7 @@ public class TestInsertionSort {
         Assert.assertEquals(unsorted1.toArray(), unsorted2.toArray());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void insertionSortShouldThrowExceptionWhenNullInData3() {
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_null_3");
@@ -125,7 +124,7 @@ public class TestInsertionSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void insertionSortShouldSortLijstGesorteerdAflopend3() throws InterruptedException {
+    public void insertionSortShouldSortLijstGesorteerdAflopend3() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_gesorteerd_aflopend_3");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
@@ -147,7 +146,7 @@ public class TestInsertionSort {
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
 
         //Act
-        insertionSort.sortWithSortingLib(unsorted1);;
+        insertionSort.sortWithSortingLib(unsorted1);
         insertionSort.sort(unsorted2);
 
         //Assert

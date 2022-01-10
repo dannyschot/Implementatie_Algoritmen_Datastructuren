@@ -263,10 +263,10 @@ public class TestTimSort {
     public void timSortShouldSortLijstWillekeurig4() {
         //Arrange
         JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_4");
-        Long[] unsorted2 = new Long[unsorted1.size()];
+        Double[] unsorted2 = new Double[unsorted1.size()];
 
         for (int i = 0; i < unsorted1.size(); i++) {
-            unsorted2[i] = (Long) unsorted1.get(i);
+            unsorted2[i] = (Double) unsorted1.get(i);
         }
 
         //Act

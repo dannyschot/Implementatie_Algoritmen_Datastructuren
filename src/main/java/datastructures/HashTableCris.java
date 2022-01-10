@@ -63,7 +63,7 @@ public class HashTableCris<K, V> {
         return null;
     }
 
-    public void resize(int size){
+    public void resize(int size) {
         HashTableCris<K, V> newtbl = new HashTableCris<K, V>(size);
         for(HashNode<K,V> node : nodes){
             for(; node != null; node = node.next){
