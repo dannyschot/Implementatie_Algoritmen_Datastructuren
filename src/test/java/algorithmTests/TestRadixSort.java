@@ -97,8 +97,8 @@ public class TestRadixSort {
 
     @SuppressWarnings("unchecked")
     @Test
-    public void radixSortShouldLijstFloat8001() {
-        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_float_8001");
+    public void radixSortShouldDoubleList() {
+        JSONArray unsorted1 = (JSONArray) jsonObject.get("lijst_willekeurig_4");
         ArrayList<Double> unsorted2 = (ArrayList<Double>) unsorted1.clone();
 
         radixSort.sortWithSortingLib(unsorted1);
